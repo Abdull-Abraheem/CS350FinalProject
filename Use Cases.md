@@ -17,3 +17,11 @@ If authenticated, **User** is brought to *HomeScreen*.
 ## Case 5: Pantry Discovery
 ### Description: 
 **User** is at *PantryDiscoveryScreen* and wants to locate a nearby food bank. **User** enters *LocationInfo*. The system searches for nearby food banks and retrieves pantry info  including adresses, operating hours, and current food inventory. The system displays a list of food banks to **User**. **User** then selects a food bank to veiw is avalible items. 
+
+## Case 6: Register Pantry
+### Actor:
+**Facility Manager**
+### Description:
+**Facility Manager** adds their pantry to the system by entering *PantryInfo* (name, address, operating hours, and whether volunteer delivery is offered). **System** saves the *Pantry* so it can appear in Pantry Discovery. **Facility Manager** can later update the hours or delivery option.
+### Related Use Cases:
+Pantry Discovery depends on pantries registered here.
