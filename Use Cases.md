@@ -2,9 +2,17 @@
 These are the typical **Use Cases** of our program
 
 ## Case 1: Log in
+### Actor:
+**User**
 ### Description: 
 **User** is at *LoginScreen* and has not logged in. **User** enters *LoginInfo* into forms. *LoginInfo* is authenticated by system.
 If authenticated, **User** is brought to *HomeScreen*.
+### Trigger:
+**User** accesses *LoginScreen*.
+### Precondition 1:
+**User** is at *LoginScreen*.
+### Precondition 2:
+**User** has not logged in.
 
 ## Case 2: Donation Intake
 
