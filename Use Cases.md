@@ -13,6 +13,16 @@ If authenticated, **User** is brought to *HomeScreen*.
 **User** is at *LoginScreen*.
 ### Precondition 2:
 **User** has not logged in.
+## Main Success Path
+### Description:
+This scenario describes the situation where the **User** only needs to login.
+### Steps:
+1. **User** Arrives at *LoginScreen*.
+2. **User** enters *LoginInfo* into forms.
+3. system authenticates *LoginInfo*.
+4. **User** is brought to *HomeScreen*.
+### Termination:
+**User** successfully logs in.
 
 ## Case 2: Donation Intake
 
