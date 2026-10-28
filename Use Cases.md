@@ -9,6 +9,7 @@ If authenticated, **User** is brought to *HomeScreen*.
 ## Case 2: Donation Intake
 
 ## Case 3: Volunteer Distribution
+**User** requests for a food package, sending a *DeliveryRequest* to the **System**. **System** adds *DeliveryRequest* to *GigQueue*. **Volunteer** claims a *DeliveryRequest* from *GigQueue* to fufill.
 
 ## Case 4: Inventory Auditing
 
