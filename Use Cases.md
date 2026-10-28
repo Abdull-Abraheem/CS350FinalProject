@@ -13,7 +13,7 @@ If authenticated, **User** is brought to *HomeScreen*.
 **User** is at *LoginScreen*.
 ### Precondition 2:
 **User** has not logged in.
-## Main Success Path
+## Case 1: Main Success Path
 ### Description:
 This scenario describes the situation where the **User** only needs to login.
 ### Steps:
