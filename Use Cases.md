@@ -25,3 +25,11 @@ If authenticated, **User** is brought to *HomeScreen*.
 **Facility Manager** adds their pantry to the system by entering *PantryInfo* (name, address, operating hours, and whether volunteer delivery is offered). **System** saves the *Pantry* so it can appear in Pantry Discovery. **Facility Manager** can later update the hours or delivery option.
 ### Related Use Cases:
 Pantry Discovery depends on pantries registered here.
+
+## Case 7: Create Account
+### Actor:
+**Resident**, **Volunteer**, **Facility Manager**
+### Description:
+A new **User** enters *AccountInfo* and chooses a role. **System** checks that the account does not already exist, saves the *UserAccount*, and the **User** can now log in. A **Resident** only needs an account to request a delivery; searching for pantries does not require one. A **Volunteer** also enters their availability and delivery area.
+### Related Use Cases:
+Log in uses accounts created here.
