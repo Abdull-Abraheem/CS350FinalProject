@@ -23,6 +23,17 @@ This scenario describes the situation where the **User** only needs to login.
 4. **User** is brought to *HomeScreen*.
 ### Termination:
 **User** successfully logs in.
+## Case 1: Alternative Flow 3A
+### Description:
+This scenario describes the situation where *LoginInfo* is not authenticated and **User** attempts to continue.
+### Steps:
+1. system fails to authenticate *LoginInfo*.
+2. system informs **User** of the failure to authenticate.
+3. **User** reenters *LoginInfo* into forms.
+4. system authenticates *LoginInfo*.
+5. **User** is brought to *HomeScreen*.
+### Termination:
+**User** successfully logs in.
 
 ## Case 2: Donation Intake
 
