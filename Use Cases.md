@@ -31,6 +31,7 @@ This scenario describes the situation where the **User** only needs to login.
 **User** requests for a food package, sending a *DeliveryRequest* to the **System**. **System** adds *DeliveryRequest* to *GigQueue*. **Volunteer** claims a *DeliveryRequest* from *GigQueue* to fufill.
 
 ## Case 4: Inventory Auditing
+**System** checks *Inventory* and sees some stock below a certain threshold, sending a *InventoryReport* to **Facility Manager** 
 
 ## Case 5: Pantry Discovery
 ### Description: 
