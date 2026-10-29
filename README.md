@@ -7,5 +7,5 @@ The purpose of this program is twofold:
 This program was created for our **CS350 Software Engineering** course
 
 ## Useful Documents:
-* [Problem Statement](/Problem-Statement.md)
-* [Use Cases](/Use-Cases.md)
+* [Problem Statement](/Problem%20Statement.md)
+* [Use Cases](/Use%20Cases.md)
