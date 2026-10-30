@@ -36,6 +36,9 @@ This scenario describes the situation where *LoginInfo* is not authenticated and
 **User** successfully logs in.
 
 ## Case 2: Donation Intake
+**Volunteer** access the **system** using a form, sending a *PantryInfo* to the **System**
+**System** stored the information in *Inventory*, *System* also Check the good if need to transfer over to other pantries.
+*System* update the information.
 
 ## Case 3: Volunteer Distribution
 ### Description:
