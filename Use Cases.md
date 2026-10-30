@@ -55,7 +55,7 @@ This scenario describes the situation where *LoginInfo* is not authenticated and
 3. User provides a location  
 4. Inventory information is avalable for food banks that report their stock
 ### Happy Path
-1. The user oprns the system and navigates to  PantryDiscoveryScreen.
+1. The user opens the system and navigates to  PantryDiscoveryScreen.
 2. The user enters their *LocationInfo* 
 3. The system searches for nearby resistered food banks
 4. The system retrieves *PantryInfo*.
