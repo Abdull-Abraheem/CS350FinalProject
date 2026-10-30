@@ -34,9 +34,21 @@ This scenario describes the situation where the **User** only needs to login.
 **System** checks *Inventory* and sees some stock below a certain threshold, sending a *InventoryReport* to **Facility Manager** 
 
 ## Case 5: Pantry Discovery
-### Description: 
-**User** is at *PantryDiscoveryScreen* and wants to locate a nearby food bank. **User** enters *LocationInfo*. The system searches for nearby food banks and retrieves pantry info  including adresses, operating hours, and current food inventory. The system displays a list of food banks to **User**. **User** then selects a food bank to veiw is avalible items. 
-
+### Description:
+**User** is at *PantryDiscoveryScreen* and wants to locate a nearby food bank. **User** enters *LocationInfo*. The system searches for nearby food banks and retrieves pantry info  including adresses, operating hours, and current food inventory. The system displays a list of food banks to **User**. **User** then selects a food bank to veiw is avalible items.
+### Actor: 
+**Local Resident / Food Assistance Client**
+### Preconditions
+1. The Food Bank and Inventory are operational 
+2. Food banks have registered their locations, hours of operation, and an avalible services in the system
+3. User provides a location  
+4. Inventory information is avalable for food banks that report their stock
+### Happy Path
+ 
+### Alternative FLows
+### Postconditions
+**Succcess** 
+**Failure**
 ## Case 6: Register Pantry
 ### Actor:
 **Facility Manager**
