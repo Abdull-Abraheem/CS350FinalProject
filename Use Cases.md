@@ -44,11 +44,35 @@ This scenario describes the situation where the **User** only needs to login.
 3. User provides a location  
 4. Inventory information is avalable for food banks that report their stock
 ### Happy Path
- 
+1. The user oprns the system and navigates to  PantryDiscoveryScreen.
+2. The user enters their *LocationInfo* 
+3. The system searches for nearby resistered food banks
+4. The system retrieves *PantryInfo*.
+5. The system displays a list of nearby food bank to the user
+6. The user selects a food bank  to view its details and available food items  
+7.  The user identifies an item they need  and checks wether the selected food bank offers delivery
+8. If deliverary is avalivle and the user wishes to request it, the user submits a FoodRequest
+9. THe system records the request and adds it to the queue
+10. The system displays a confirmation message
 ### Alternative FLows
+* A1 Location Unavalible
+* A2 No nearby food bank
+* A3 inventory  Unavailable:
+* A4 Item out of stock
+* A5 Delivery unavalible
+* A6 user cancels
+* A7 System Error
 ### Postconditions
 **Succcess** 
+1. the user has viewed a list of nearby food banks and their information  is avalible
+2. The user can identify a food bank that meets their needs
+3. The sytem stores the *FoodRequest* and adds it to the volunteer delivery queue
+4. The system confirms succsesfull request submission to the user
 **Failure**
+1. If the search fails the system will inform that the requested information cannot be retrieved
+2. the user cancels or cancels or cannot complete a delivery request, no new request is created
+3. Existing food bank inventory records remain unchanged by the discovery process
+
 ## Case 6: Register Pantry
 ### Actor:
 **Facility Manager**
