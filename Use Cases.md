@@ -42,9 +42,39 @@ This scenario describes the situation where *LoginInfo* is not authenticated and
 
 ## Case 3: Volunteer Distribution
 ### Description:
-**User** requests for a food package, sending a *DeliveryRequest* to the **System**. **System** adds *DeliveryRequest* to *GigQueue*. **Volunteer** claims a *DeliveryRequest* from *GigQueue* to fufill.
+Preconditions:
+Venue offers a delivery service.
+User was signed in and filled out form for a delivery.
+
+Trigger
+User submits a request for a food package through the client interface 
+
+Main Success Scenario (Happy Path)
+1. **User** requests a food package with specific dietary preferences or drop-off notes.
+
+2. **System** validates the request, creating a *DeliveryRequest* that is pending
+
+3. **System** adds the DeliveryRequest to the *GigQueue*.
+
+4. **Volunteer** opens the dashboard and views deliveries in the *GigQueue*.
+
+5. **Volunteer** selects and claims a specific *DeliveryRequest*.
+
+6. **System** locks the request and updates its status to assigned.
+
+7. **Volunteer** delivers the package, marking *DeliveryRequest* as complete.
+
+Alt paths:
+3a. If a *DeliveryRequest* remains unclaimed in the GigQueue for longer than a threshold, then it cancels the request?
+5a. If two volunteers attempt to claim the same request simultaneously, the **System** grants it to the first, or whoever wins the race.
 
 ## Case 4: Inventory Auditing
+Precondition(s):
+Facility opted to use this aspect
+
+Trigger:
+Should be occurring on some time interval or manually requested.
+
 **System** checks *Inventory* and sees some stock below a certain threshold, sending a *InventoryReport* to **Facility Manager** 
 
 ## Case 5: Pantry Discovery
