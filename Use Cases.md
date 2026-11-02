@@ -51,14 +51,14 @@ This scenario describes the situation where *LoginInfo* is not authenticated and
 
 ## Case 3: Volunteer Distribution
 ### Description:
-Preconditions:
+### Preconditions:
 Venue offers a delivery service.
 User was signed in and filled out form for a delivery.
 
-Trigger
+### Trigger
 User submits a request for a food package through the client interface 
 
-Main Success Scenario (Happy Path)
+### Main Success Scenario (Happy Path)
 1. **User** requests a food package with specific dietary preferences or drop-off notes.
 
 2. **System** validates the request, creating a *DeliveryRequest* that is pending
