@@ -88,43 +88,73 @@ Should be occurring on some time interval or manually requested.
 
 ## Case 5: Pantry Discovery
 ### Description:
-**User** is at *PantryDiscoveryScreen* and wants to locate a nearby food bank. **User** enters *LocationInfo*. The system searches for nearby food banks and retrieves pantry info  including adresses, operating hours, and current food inventory. The system displays a list of food banks to **User**. **User** then selects a food bank to veiw is avalible items.
+**User** is at *PantryDiscoveryScreen* and wants to locate a nearby food bank. **User** enters *LocationInfo*. The system searches for nearby food banks and retrieves pantry info, including address, operating hours, and current food inventory. The system displays a list of food banks to **User**. **User** then selects a food bank to view available items.
 ### Actor: 
 **Local Resident / Food Assistance Client**
 ### Preconditions
 1. The Food Bank and Inventory are operational 
-2. Food banks have registered their locations, hours of operation, and an avalible services in the system
+2. Food banks have registered their locations, hours of operation, and available services in the system
 3. User provides a location  
-4. Inventory information is avalable for food banks that report their stock
+4. Inventory information is available for food banks that report their stock
 ### Happy Path
 1. The user opens the system and navigates to  PantryDiscoveryScreen.
 2. The user enters their *LocationInfo* 
-3. The system searches for nearby resistered food banks
+3. The system searches for nearby registered food banks
 4. The system retrieves *PantryInfo*.
-5. The system displays a list of nearby food bank to the user
+5. The system displays a list of nearby food banks to the user
 6. The user selects a food bank  to view its details and available food items  
-7.  The user identifies an item they need  and checks wether the selected food bank offers delivery
-8. If deliverary is avalivle and the user wishes to request it, the user submits a FoodRequest
-9. THe system records the request and adds it to the queue
+7.  The user identifies an item they need  and checks whether the selected food bank offers delivery
+8. If delivery is available and the user wishes to request it, the user submits a FoodRequest
+9. The system records the request and adds it to the queue
 10. The system displays a confirmation message
-### Alternative FLows
-* A1 Location Unavalible
+    
+### Alternative Flows
+* A1 Location Unavailable
  Description: The User does not provide a location, or the system cannot recognize a valid location.
   1. The **User** submits their *LocationInfo*
   2. The **System** cannot validate their location
   3. The **System** displays an error message and requests their valid location information
   4. The **User** enters a corrected location or leaves the search
 
-* A2 No nearby food bank No registered food banks are found within the specified area
-    1. The **System** searches for nearby registered banks
-    2. The **System** determines that no matching food banks were found.
-    3.The **System** notifies the user that there are no nearby banks
-    4. The **System** offers to expand the search area
+* A2 No nearby food bank: No registered food banks are found within the specified area
+  1. The **System** searches for nearby registered banks
+  2. The **System** determines that no matching food banks were found.
+  3. The **System** notifies the user that there are no nearby banks
+  4. The **System** offers to expand the search area
+     
 * A3 inventory  Unavailable:
+  1. The **System** retrieves the pantry's *PantryInfo*
+  2. The **System** fails to retrieve its current inventory
+  3. The **System** displays the pantry's available information
+  4. The **System** informs **User** that inventory information is not currently avalable
+  5. The User may contact the pantry directly or select another bank
+     
 * A4 Item out of stock
-* A5 Delivery unavalible
+ 1. The **User** selects an item from the pantry's inventory
+ 2. The **System** checks the item's current stock
+ 3. The **System** determines that the item is out of stock
+ 4. The **System** informs the **User** that the item is out of stock
+ 5. The **User** selects another item or another pantry
+ 
+* A5 Delivery Unavailable
+ 1. The **User** selects an item from the pantry's inventory
+ 2.  The **System** determines that delivery is unavailable
+ 3.  The **System** informs the **User** that the pantry 
+ 4.  The **System** informs the **User** that the item is unavailable
+ 5.  The **User** selects another item or another pantry
+    
 * A6 User cancels
+ 1. The **User**  begins sumbmiting a food request
+ 2. The **User** cancels before finishing the submission 
+ 3. The **System** discards the incomplete request
+ 4. The **System** returns the **User** to the pantry details screen
+    
 * A7 System Error
+ 1. The **System** encounters an error
+ 2. The **System** displays an error message
+ 3. The **System** records the error
+ 4. The **System** allows the user to retry the operation
+    
 ### Postconditions
 **Succcess** 
 1. the user has viewed a list of nearby food banks and their information  is avalible
