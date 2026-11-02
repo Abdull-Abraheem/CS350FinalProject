@@ -109,11 +109,21 @@ Should be occurring on some time interval or manually requested.
 10. The system displays a confirmation message
 ### Alternative FLows
 * A1 Location Unavalible
-* A2 No nearby food bank
+ Description: The User does not provide a location, or the system cannot recognize a valid location.
+  1. The **User** submits their *LocationInfo*
+  2. The **System** cannot validate their location
+  3. The **System** displays an error message and requests their valid location information
+  4. The **User** enters a corrected location or leaves the search
+
+* A2 No nearby food bank No registered food banks are found within the specified area
+    1. The **System** searches for nearby registered banks
+    2. The **System** determines that no matching food banks were found.
+    3.The **System** notifies the user that there are no nearby banks
+    4. The **System** offers to expand the search area
 * A3 inventory  Unavailable:
 * A4 Item out of stock
 * A5 Delivery unavalible
-* A6 user cancels
+* A6 User cancels
 * A7 System Error
 ### Postconditions
 **Succcess** 
@@ -121,6 +131,7 @@ Should be occurring on some time interval or manually requested.
 2. The user can identify a food bank that meets their needs
 3. The sytem stores the *FoodRequest* and adds it to the volunteer delivery queue
 4. The system confirms succsesfull request submission to the user
+   
 **Failure**
 1. If the search fails the system will inform that the requested information cannot be retrieved
 2. the user cancels or cancels or cannot complete a delivery request, no new request is created
