@@ -34,6 +34,15 @@ This scenario describes the situation where *LoginInfo* is not authenticated and
 5. **User** is brought to *HomeScreen*.
 ### Termination:
 **User** successfully logs in.
+## Case 1: Alternative Flow 3B
+### Description:
+This scenario describes the situation where *LoginInfo* is not authenticated and **User** does not attempt to continue.
+### Steps:
+1. system fails to authenticate *LoginInfo*.
+2. system informs **User** of the failure to authenticate.
+3. **User** closes/leaves *LoginScreen*.
+### Termination:
+**User** closes/leaves *LoginScreen*.
 
 ## Case 2: Donation Intake
 **Volunteer** access the **system** using a form, sending a *PantryInfo* to the **System**
