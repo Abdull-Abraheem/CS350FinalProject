@@ -73,7 +73,7 @@ The **System** stores the *Pantry Info* information to the food bank's *Inventor
    
 6. **System** dectects no transfer is required to other food pantries
 
-***Termination***
+### Termination:
 Donation has now been fully logged and updates into food banks inventory
 
 ### Alternative Path 6A
@@ -82,8 +82,8 @@ Donation has now been fully logged and updates into food banks inventory
 - 6A3. **Volunteer** sets aside required goods that will be transfered to other food pantry 
 - 6A4. **Volunteer** informs **System** that required goods have been set aside for transfer
 
-***Termination***
-**System** will see that food pantry that requried transfer is no longer needed
+### Termination:
+**System** will see that food pantry that required a transfer of goods, no longer requires transfer of goods
 
 ## Case 3: Volunteer Distribution
 ### Description:
