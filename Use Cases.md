@@ -45,9 +45,45 @@ This scenario describes the situation where *LoginInfo* is not authenticated and
 **User** closes/leaves *LoginScreen*.
 
 ## Case 2: Donation Intake
-**Volunteer** access the **system** using a form, sending a *PantryInfo* to the **System**
-**System** stored the information in *Inventory*, *System* also Check the good if need to transfer over to other pantries.
+
+### Actor(s):
+**Volunteer**
+
+### Description
+**Volunteer** access the **System** using a form, sending a *PantryInfo* to the **System**.
+The **System** stores the *Pantry Info* information to the food bank's *Inventory*, **System** also Check the good if need to transfer over to other pantries.
 *System* update the information.
+
+### Pre-Condtion(s):
+- Food Bank recives donations
+
+### Post_Condtion(s):
+- 
+
+### Main Success Path:
+1. **Volunteer** access the **System** using a form
+
+2. Using said form, **Volunteer** adjusts the quantities of incoming donations and logs expiration dates
+
+3. **Volunter** submits adjusted data as *Pantry Info*, sending it to the **System**
+
+4. **System** saves and stores the *Pantry Info* infomation into the food banks *Inventory*
+
+5. **System** checks neighboring distribution center to check if goods from donation should be transfered to other pantries
+   
+6. **System** dectects no transfer is required to other food pantries
+
+***Termination***
+Donation has now been fully logged and updates into food banks inventory
+
+### Alternative Path 6A
+- 6A1. **System** dectects that a neighboring distribution center needs recived goods from donation
+- 6A2. **System** informs **Volunteer** of required transfer to other food pantry
+- 6A3. **Volunteer** sets aside required goods that will be transfered to other food pantry 
+- 6A4. **Volunteer** informs **System** that required goods have been set aside for transfer
+
+***Termination***
+**System** will see that food pantry that requried transfer is no longer needed
 
 ## Case 3: Volunteer Distribution
 ### Description:
