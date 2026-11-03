@@ -114,7 +114,7 @@ Alt path 5a. If two volunteers attempt to claim the same request simultaneously,
 ### Case 3a
 1. *DeliveryRequest* has remained unclaimed for x amount of time
 2. **System** increases priority for *DeliveryRequest*
-3. After y amount of time, *DeliveryRequest* is cancelled and notified to *User*
+3. After y amount of time, *DeliveryRequest* is cancelled and notified to **User**
 
 
 ## Case 4: Inventory Auditing
