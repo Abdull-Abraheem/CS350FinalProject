@@ -109,18 +109,25 @@ User submits a request for a food package through the client interface
 
 7. **Volunteer** delivers the package, marking *DeliveryRequest* as complete.
 
-Alt paths:
-3a. If a *DeliveryRequest* remains unclaimed in the GigQueue for longer than a threshold, then it cancels the request?
-5a. If two volunteers attempt to claim the same request simultaneously, the **System** grants it to the first, or whoever wins the race.
+Alt path 5a. If two volunteers attempt to claim the same request simultaneously, the **System** grants it to the first, or whoever wins the race.
+
+### Case 3a
+1. *DeliveryRequest* has remained unclaimed for x amount of time
+2. **System** increases priority for *DeliveryRequest*
+3. After y amount of time, *DeliveryRequest* is cancelled and notified to *User*
+
 
 ## Case 4: Inventory Auditing
 Precondition(s):
 Facility opted to use this aspect
+Inventory was recorded
 
 Trigger:
 Should be occurring on some time interval or manually requested.
 
-**System** checks *Inventory* and sees some stock below a certain threshold, sending a *InventoryReport* to **Facility Manager** 
+1. **System** checks *Inventory* every X
+2. When certain attributes of *Inventory* are below a threshold, they are marked
+3. **System** sends *InventoryReport* to **Facility Manager**
 
 ## Case 5: Pantry Discovery
 ### Description:
