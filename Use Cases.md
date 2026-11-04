@@ -225,3 +225,33 @@ Pantry Discovery depends on pantries registered here.
 A new **User** enters *AccountInfo* and chooses a role. **System** checks that the account does not already exist, saves the *UserAccount*, and the **User** can now log in. A **Resident** only needs an account to request a delivery; searching for pantries does not require one. A **Volunteer** also enters their availability and delivery area.
 ### Related Use Cases:
 Log in uses accounts created here.
+
+## Case 8: Registration
+### Actor:
+**User**
+### Description: 
+**User** is at *LoginScreen* and has not logged in. **User** goes to *Registration Screen* and enters their *LoginInfo* for creating an account.
+
+### Trigger:
+**User** accesses *LoginScreen*, then *RegistrationScreen*.
+### Preconditions:
+**User** is at *LoginScreen*.
+**User** has not logged in.
+**User** does not have an account
+## Case 8: Main Success Path
+1. **User** Arrives at *RegistrationScreen*.
+2. **User** enters their *LoginInfo* into forms.
+3. system checks if *email* is valid
+4. system checks if *password* does not meet requirements
+5. **User** is brought to *LoginScreen*.
+## Case 8: Alternative Flow 3A
+1. System detects *email* is invalid
+2. System sends invalid request to *RegistrationScreen*
+3. **User** receives invalid request
+4. Return to main path
+## Case 8: Alternative Flow 4A
+1. System detects *password* is invalid
+2. System sends invalid password request to *RegistrationScreen*
+3. **User** receives invalid password request
+4. Return to main path
+
