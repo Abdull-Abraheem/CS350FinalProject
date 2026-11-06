@@ -5,3 +5,7 @@ The purpose of this program is twofold:
 2. Allow food banks to better *manage their inventories* and *coordinate distribution*
 
 This program was created for our **CS350 Software Engineering** course
+
+## Useful Documents:
+* [Problem Statement](/Problem%20Statement.md)
+* [Use Cases](/Use%20Cases.md)
