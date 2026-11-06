@@ -218,19 +218,22 @@ Should be occurring on some time interval or manually requested.
 ### Related Use Cases:
 Pantry Discovery depends on pantries registered here.
 
-## Case 7: Create Account
-### Actor:
-**Resident**, **Volunteer**, **Facility Manager**
-### Description:
-A new **User** enters *AccountInfo* and chooses a role. **System** checks that the account does not already exist, saves the *UserAccount*, and the **User** can now log in. A **Resident** only needs an account to request a delivery; searching for pantries does not require one. A **Volunteer** also enters their availability and delivery area.
-### Related Use Cases:
-Log in uses accounts created here.
 
-## Case 8: Registration
+> ## Case 7: Create Account - Depreciated
+> ### Actor:
+> **Resident**, **Volunteer**, **Facility Manager**
+> ### Description:
+> A new **User** enters *AccountInfo* and chooses a role. **System** checks that the account does not already exist, saves the *UserAccount*, and the **User** can now log in. A **Resident** only needs an account to request a delivery; searching for pantries does not require one. A **Volunteer** also enters their availability and delivery area.
+> ### Related Use Cases:
+> Log in uses accounts created here.
+
+## Case 7: Registration
 ### Actor:
 **User**
 ### Description: 
 **User** is at *LoginScreen* and has not logged in. **User** goes to *Registration Screen* and enters their *LoginInfo* for creating an account.
+### Related Use Cases:
+Log in uses accounts created here.
 
 ### Trigger:
 **User** accesses *LoginScreen*, then *RegistrationScreen*.
@@ -238,18 +241,18 @@ Log in uses accounts created here.
 **User** is at *LoginScreen*.
 **User** has not logged in.
 **User** does not have an account
-## Case 8: Main Success Path
+## Case 7: Main Success Path
 1. **User** Arrives at *RegistrationScreen*.
 2. **User** enters their *LoginInfo* into forms.
 3. system checks if *email* is valid
 4. system checks if *password* does not meet requirements
 5. **User** is brought to *LoginScreen*.
-## Case 8: Alternative Flow 3A
+## Case 7: Alternative Flow 3A
 1. System detects *email* is invalid
 2. System sends invalid request to *RegistrationScreen*
 3. **User** receives invalid request
 4. Return to main path
-## Case 8: Alternative Flow 4A
+## Case 7: Alternative Flow 4A
 1. System detects *password* is invalid
 2. System sends invalid password request to *RegistrationScreen*
 3. **User** receives invalid password request
