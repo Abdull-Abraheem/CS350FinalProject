@@ -316,3 +316,58 @@ Nothing is recorded and *Inventory* is unchanged.
 - Stock for an item can never go below zero.
 - Every change to *Inventory* from a distribution can be traced to a saved *DistributionRecord*.
 
+## Case 9: Manage Expiring Stock
+### Actor:
+**Facility Manager** (started on a schedule by the **System**)
+### Description:
+**System** checks *Inventory* each day for perishable items close to the expiration dates logged in Donation Intake (Case 2) and alerts the **Facility Manager**. **Facility Manager** chooses to give the items out first, transfer them to another pantry, or discard them. **System** updates *Inventory* and logs any waste.
+### Related Use Cases:
+Uses expiration dates logged in Donation Intake (Case 2). Transfers follow Case 2 Alternative Path 6A.
+### Trigger:
+The daily expiration check runs.
+### Preconditions:
+Perishable items were logged with expiration dates through Donation Intake (Case 2).
+The pantry has set how many days before expiration it wants to be warned.
+## Case 9: Main Success Path
+### Description:
+This scenario describes the situation where items are close to expiring and can still be given out.
+### Steps:
+1. **System** checks *Inventory* for perishable items that expire within the warning period.
+2. **System** finds items close to expiring and sends an *ExpirationAlert* to **Facility Manager**.
+3. **Facility Manager** reviews the items in the *ExpirationAlert*.
+4. **Facility Manager** marks the items to be given out first.
+5. **System** flags those items in *Inventory* as priority.
+### Termination:
+Every item in the *ExpirationAlert* is flagged to be given out first.
+## Case 9: Alternative Flow 2A
+### Description:
+This scenario describes the situation where no items are close to expiring.
+### Steps:
+1. **System** finds no perishable items within the warning period.
+2. **System** ends the check without sending an alert.
+### Termination:
+No *ExpirationAlert* is sent.
+## Case 9: Alternative Flow 4A
+### Description:
+This scenario describes the situation where the pantry cannot use the items in time but another pantry can.
+### Steps:
+1. **Facility Manager** chooses to transfer the items.
+2. **System** follows the transfer steps in Donation Intake (Case 2) Alternative Path 6A.
+### Termination:
+The items are set aside for transfer to another pantry.
+## Case 9: Alternative Flow 4B
+### Description:
+This scenario describes the situation where items have already expired or cannot be used.
+### Steps:
+1. **Facility Manager** marks the items as discarded.
+2. **System** removes the items from *Inventory*.
+3. **System** saves a *WasteRecord* with the items, quantities, and date.
+### Termination:
+The items are out of *Inventory* and logged as waste.
+### Postconditions:
+**Success:** Every item in the *ExpirationAlert* is flagged to give out first, set aside for transfer, or discarded and logged as waste.
+**Failure:** If **Facility Manager** does not respond, the items stay in *Inventory* and appear in the next day's *ExpirationAlert*.
+### Quality Rules:
+- Expired items are never shown as available stock.
+- Discarded food can always be traced to a *WasteRecord*.
+
