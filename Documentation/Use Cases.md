@@ -371,3 +371,62 @@ The items are out of *Inventory* and logged as waste.
 - Expired items are never shown as available stock.
 - Discarded food can always be traced to a *WasteRecord*.
 
+## Case 10: Calculate Food Costs
+### Actor:
+**Facility Manager**
+### Description:
+**Facility Manager** chooses a time period. **System** totals the value of food received, given out, transferred, and wasted in that period and shows a *CostReport*.
+### Related Use Cases:
+Uses donations from Donation Intake (Case 2), transfers from Case 2 Alternative Path 6A, *DistributionRecords* from Record Distribution (Case 8), and *WasteRecords* from Manage Expiring Stock (Case 9).
+### Trigger:
+**Facility Manager** asks for a cost report.
+### Preconditions:
+**Facility Manager** is logged in (Case 1).
+Each item in *Inventory* has a value per unit.
+## Case 10: Main Success Path
+### Description:
+This scenario describes the situation where the pantry has activity in the chosen period and every item has a value.
+### Steps:
+1. **Facility Manager** opens the cost report for their pantry.
+2. **Facility Manager** chooses a start date and an end date.
+3. **System** gathers the donations, transfers, *DistributionRecords*, and *WasteRecords* in that period.
+4. **System** multiplies each quantity by the item's value per unit.
+5. **System** totals the value received, given out, transferred, and wasted.
+6. **System** shows the *CostReport* to **Facility Manager**.
+### Termination:
+**Facility Manager** sees the *CostReport* for the chosen period.
+## Case 10: Alternative Flow 2A
+### Description:
+This scenario describes the situation where the chosen period is not valid.
+### Steps:
+1. **System** detects that the end date is before the start date or in the future.
+2. **System** tells **Facility Manager** the period is not valid.
+3. Return to main path step 2.
+### Termination:
+**Facility Manager** chooses a valid period.
+## Case 10: Alternative Flow 3A
+### Description:
+This scenario describes the situation where there is no activity in the chosen period.
+### Steps:
+1. **System** finds no records in the period.
+2. **System** shows a *CostReport* with all totals at zero and says there was no activity.
+### Termination:
+**Facility Manager** sees an empty *CostReport*.
+## Case 10: Alternative Flow 4A
+### Description:
+This scenario describes the situation where some items do not have a value per unit.
+### Steps:
+1. **System** finds items with no value per unit.
+2. **System** totals the items that have a value.
+3. **System** shows the *CostReport*, marked incomplete, with a list of the items missing a value.
+4. **Facility Manager** may set the missing values and return to main path step 3.
+### Termination:
+**Facility Manager** sees a *CostReport* marked incomplete, or a complete one after setting the values.
+### Postconditions:
+**Success:** **Facility Manager** sees the total value received, given out, transferred, and wasted for the period.
+**Failure:** No *CostReport* is shown.
+In both cases *Inventory* is unchanged.
+### Quality Rules:
+- Calculating a *CostReport* never changes *Inventory*.
+- Every total in a *CostReport* can be traced to the records it came from.
+
