@@ -50,8 +50,8 @@ This scenario describes the situation where *LoginInfo* is not authenticated and
 **Volunteer**
 
 ### Description
-**Volunteer** access the **System** using a form, sending a *PantryInfo* to the **System**.
-The **System** stores the *Pantry Info* information to the food bank's *Inventory*, **System** also Check the good if need to transfer over to other pantries.
+**Volunteer** access the System using a form, sending a *PantryInfo* to the System.
+The System stores the *Pantry Info* information to the food bank's *Inventory*, System also Check the good if need to transfer over to other pantries.
 *System* update the information.
 
 ### Pre-Condtion(s):
@@ -61,29 +61,29 @@ The **System** stores the *Pantry Info* information to the food bank's *Inventor
 - 
 
 ### Main Success Path:
-1. **Volunteer** access the **System** using a form
+1. **Volunteer** access the System using a form
 
 2. Using said form, **Volunteer** adjusts the quantities of incoming donations and logs expiration dates
 
-3. **Volunter** submits adjusted data as *Pantry Info*, sending it to the **System**
+3. **Volunter** submits adjusted data as *Pantry Info*, sending it to the System
 
-4. **System** saves and stores the *Pantry Info* infomation into the food banks *Inventory*
+4. System saves and stores the *Pantry Info* infomation into the food banks *Inventory*
 
-5. **System** checks neighboring distribution center to check if goods from donation should be transfered to other pantries
+5. System checks neighboring distribution center to check if goods from donation should be transfered to other pantries
    
-6. **System** dectects no transfer is required to other food pantries
+6. System dectects no transfer is required to other food pantries
 
 ### Termination:
 Donation has now been fully logged and updates into food banks inventory
 
 ### Alternative Path 6A
-- 6A1. **System** dectects that a neighboring distribution center needs recived goods from donation
-- 6A2. **System** informs **Volunteer** of required transfer to other food pantry
+- 6A1. System dectects that a neighboring distribution center needs recived goods from donation
+- 6A2. System informs **Volunteer** of required transfer to other food pantry
 - 6A3. **Volunteer** sets aside required goods that will be transfered to other food pantry 
-- 6A4. **Volunteer** informs **System** that required goods have been set aside for transfer
+- 6A4. **Volunteer** informs System that required goods have been set aside for transfer
 
 ### Termination:
-**System** will see that food pantry that required a transfer of goods, no longer requires transfer of goods
+System will see that food pantry that required a transfer of goods, no longer requires transfer of goods
 
 ## Case 3: Volunteer Distribution
 ### Description:
@@ -97,23 +97,23 @@ User submits a request for a food package through the client interface
 ### Main Success Scenario (Happy Path)
 1. **User** requests a food package with specific dietary preferences or drop-off notes.
 
-2. **System** validates the request, creating a *DeliveryRequest* that is pending
+2. System validates the request, creating a *DeliveryRequest* that is pending
 
-3. **System** adds the DeliveryRequest to the *GigQueue*.
+3. System adds the DeliveryRequest to the *GigQueue*.
 
 4. **Volunteer** opens the dashboard and views deliveries in the *GigQueue*.
 
 5. **Volunteer** selects and claims a specific *DeliveryRequest*.
 
-6. **System** locks the request and updates its status to assigned.
+6. System locks the request and updates its status to assigned.
 
 7. **Volunteer** delivers the package, marking *DeliveryRequest* as complete.
 
-Alt path 5a. If two volunteers attempt to claim the same request simultaneously, the **System** grants it to the first, or whoever wins the race.
+Alt path 5a. If two volunteers attempt to claim the same request simultaneously, the System grants it to the first, or whoever wins the race.
 
 ### Case 3a
 1. *DeliveryRequest* has remained unclaimed for x amount of time
-2. **System** increases priority for *DeliveryRequest*
+2. System increases priority for *DeliveryRequest*
 3. After y amount of time, *DeliveryRequest* is cancelled and notified to **User**
 
 
@@ -125,9 +125,9 @@ Inventory was recorded
 Trigger:
 Should be occurring on some time interval or manually requested.
 
-1. **System** checks *Inventory* every X
+1. System checks *Inventory* every X
 2. When certain attributes of *Inventory* are below a threshold, they are marked
-3. **System** sends *InventoryReport* to **Facility Manager**
+3. System sends *InventoryReport* to **Facility Manager**
 
 ## Case 5: Pantry Discovery
 ### Description:
@@ -155,48 +155,48 @@ Should be occurring on some time interval or manually requested.
 * A1 Location Unavailable
  Description: The User does not provide a location, or the system cannot recognize a valid location.
   1. The **User** submits their *LocationInfo*
-  2. The **System** cannot validate their location
-  3. The **System** displays an error message and requests their valid location information
+  2. The System cannot validate their location
+  3. The System displays an error message and requests their valid location information
   4. The **User** enters a corrected location or leaves the search
 
 * A2 No nearby food bank: No registered food banks are found within the specified area
-  1. The **System** searches for nearby registered banks
-  2. The **System** determines that no matching food banks were found.
-  3. The **System** notifies the user that there are no nearby banks
-  4. The **System** offers to expand the search area
+  1. The System searches for nearby registered banks
+  2. The System determines that no matching food banks were found.
+  3. The System notifies the user that there are no nearby banks
+  4. The System offers to expand the search area
      
 * A3 inventory  Unavailable:
-  1. The **System** retrieves the pantry's *PantryInfo*
-  2. The **System** fails to retrieve its current inventory
-  3. The **System** displays the pantry's available information
-  4. The **System** informs **User** that inventory information is not currently avalable
+  1. The System retrieves the pantry's *PantryInfo*
+  2. The System fails to retrieve its current inventory
+  3. The System displays the pantry's available information
+  4. The System informs **User** that inventory information is not currently avalable
   5. The User may contact the pantry directly or select another bank
      
 * A4 Item out of stock
  1. The **User** selects an item from the pantry's inventory
- 2. The **System** checks the item's current stock
- 3. The **System** determines that the item is out of stock
- 4. The **System** informs the **User** that the item is out of stock
+ 2. The System checks the item's current stock
+ 3. The System determines that the item is out of stock
+ 4. The System informs the **User** that the item is out of stock
  5. The **User** selects another item or another pantry
  
 * A5 Delivery Unavailable
  1. The **User** selects an item from the pantry's inventory
- 2.  The **System** determines that delivery is unavailable
- 3.  The **System** informs the **User** that the pantry 
- 4.  The **System** informs the **User** that the item is unavailable
+ 2.  The System determines that delivery is unavailable
+ 3.  The System informs the **User** that the pantry 
+ 4.  The System informs the **User** that the item is unavailable
  5.  The **User** selects another item or another pantry
     
 * A6 User cancels
  1. The **User**  begins sumbmiting a food request
  2. The **User** cancels before finishing the submission 
- 3. The **System** discards the incomplete request
- 4. The **System** returns the **User** to the pantry details screen
+ 3. The System discards the incomplete request
+ 4. The System returns the **User** to the pantry details screen
     
 * A7 System Error
- 1. The **System** encounters an error
- 2. The **System** displays an error message
- 3. The **System** records the error
- 4. The **System** allows the user to retry the operation
+ 1. The System encounters an error
+ 2. The System displays an error message
+ 3. The System records the error
+ 4. The System allows the user to retry the operation
     
 ### Postconditions
 **Succcess** 
@@ -214,7 +214,7 @@ Should be occurring on some time interval or manually requested.
 ### Actor:
 **Facility Manager**
 ### Description:
-**Facility Manager** adds their pantry to the system by entering *PantryInfo* (name, address, operating hours, and whether volunteer delivery is offered). **System** saves the *Pantry* so it can appear in Pantry Discovery. **Facility Manager** can later update the hours or delivery option.
+**Facility Manager** adds their pantry to the system by entering *PantryInfo* (name, address, operating hours, and whether volunteer delivery is offered). System saves the *Pantry* so it can appear in Pantry Discovery. **Facility Manager** can later update the hours or delivery option.
 ### Related Use Cases:
 Pantry Discovery depends on pantries registered here.
 
@@ -223,7 +223,7 @@ Pantry Discovery depends on pantries registered here.
 > ### Actor:
 > **Resident**, **Volunteer**, **Facility Manager**
 > ### Description:
-> A new **User** enters *AccountInfo* and chooses a role. **System** checks that the account does not already exist, saves the *UserAccount*, and the **User** can now log in. A **Resident** only needs an account to request a delivery; searching for pantries does not require one. A **Volunteer** also enters their availability and delivery area.
+> A new **User** enters *AccountInfo* and chooses a role. System checks that the account does not already exist, saves the *UserAccount*, and the **User** can now log in. A **Resident** only needs an account to request a delivery; searching for pantries does not require one. A **Volunteer** also enters their availability and delivery area.
 > ### Related Use Cases:
 > Log in uses accounts created here.
 
@@ -262,7 +262,7 @@ Log in uses accounts created here.
 ### Actor:
 **Volunteer**
 ### Description:
-A client picks up food in person at the pantry. **Volunteer** records which items and how much of each were given out. **System** subtracts them from the pantry's *Inventory*.
+A client picks up food in person at the pantry. **Volunteer** records which items and how much of each were given out. System subtracts them from the pantry's *Inventory*.
 ### Related Use Cases:
 Inventory Auditing (Case 4) uses these records to detect low stock. Pantry Discovery (Case 5) shows the updated stock.
 ### Trigger:
@@ -276,10 +276,10 @@ This scenario describes the situation where every item given out is in stock.
 ### Steps:
 1. **Volunteer** opens the distribution form for their pantry.
 2. **Volunteer** selects each item given out and enters the quantity.
-3. **Volunteer** submits the *DistributionRecord* to the **System**.
-4. **System** checks that each quantity is not more than the amount in *Inventory*.
-5. **System** subtracts the quantities from *Inventory* and saves the *DistributionRecord* with the date.
-6. **System** confirms to **Volunteer** that the distribution was recorded.
+3. **Volunteer** submits the *DistributionRecord* to the System.
+4. System checks that each quantity is not more than the amount in *Inventory*.
+5. System subtracts the quantities from *Inventory* and saves the *DistributionRecord* with the date.
+6. System confirms to **Volunteer** that the distribution was recorded.
 ### Termination:
 The distribution is recorded and *Inventory* is updated.
 ## Case 8: Alternative Flow 2A
@@ -295,8 +295,8 @@ The item is in *Inventory* and can be recorded.
 ### Description:
 This scenario describes the situation where a quantity entered is more than the amount in *Inventory*.
 ### Steps:
-1. **System** detects that a quantity is more than the amount in *Inventory*.
-2. **System** tells **Volunteer** which item is over and how many are recorded.
+1. System detects that a quantity is more than the amount in *Inventory*.
+2. System tells **Volunteer** which item is over and how many are recorded.
 3. **Volunteer** corrects the quantity.
 4. Return to main path step 3.
 ### Termination:
@@ -306,7 +306,7 @@ This scenario describes the situation where a quantity entered is more than the 
 This scenario describes the situation where **Volunteer** cancels before submitting.
 ### Steps:
 1. **Volunteer** cancels the distribution form.
-2. **System** discards the unsaved *DistributionRecord*.
+2. System discards the unsaved *DistributionRecord*.
 ### Termination:
 Nothing is recorded and *Inventory* is unchanged.
 ### Postconditions:
@@ -318,9 +318,9 @@ Nothing is recorded and *Inventory* is unchanged.
 
 ## Case 9: Manage Expiring Stock
 ### Actor:
-**Facility Manager** (started on a schedule by the **System**)
+**Facility Manager** (started on a schedule by the System)
 ### Description:
-**System** checks *Inventory* each day for perishable items close to the expiration dates logged in Donation Intake (Case 2) and alerts the **Facility Manager**. **Facility Manager** chooses to give the items out first, transfer them to another pantry, or discard them. **System** updates *Inventory* and logs any waste.
+System checks *Inventory* each day for perishable items close to the expiration dates logged in Donation Intake (Case 2) and alerts the **Facility Manager**. **Facility Manager** chooses to give the items out first, transfer them to another pantry, or discard them. System updates *Inventory* and logs any waste.
 ### Related Use Cases:
 Uses expiration dates logged in Donation Intake (Case 2). Transfers follow Case 2 Alternative Path 6A.
 ### Trigger:
@@ -332,19 +332,19 @@ The pantry has set how many days before expiration it wants to be warned.
 ### Description:
 This scenario describes the situation where items are close to expiring and can still be given out.
 ### Steps:
-1. **System** checks *Inventory* for perishable items that expire within the warning period.
-2. **System** finds items close to expiring and sends an *ExpirationAlert* to **Facility Manager**.
+1. System checks *Inventory* for perishable items that expire within the warning period.
+2. System finds items close to expiring and sends an *ExpirationAlert* to **Facility Manager**.
 3. **Facility Manager** reviews the items in the *ExpirationAlert*.
 4. **Facility Manager** marks the items to be given out first.
-5. **System** flags those items in *Inventory* as priority.
+5. System flags those items in *Inventory* as priority.
 ### Termination:
 Every item in the *ExpirationAlert* is flagged to be given out first.
 ## Case 9: Alternative Flow 2A
 ### Description:
 This scenario describes the situation where no items are close to expiring.
 ### Steps:
-1. **System** finds no perishable items within the warning period.
-2. **System** ends the check without sending an alert.
+1. System finds no perishable items within the warning period.
+2. System ends the check without sending an alert.
 ### Termination:
 No *ExpirationAlert* is sent.
 ## Case 9: Alternative Flow 4A
@@ -352,7 +352,7 @@ No *ExpirationAlert* is sent.
 This scenario describes the situation where the pantry cannot use the items in time but another pantry can.
 ### Steps:
 1. **Facility Manager** chooses to transfer the items.
-2. **System** follows the transfer steps in Donation Intake (Case 2) Alternative Path 6A.
+2. System follows the transfer steps in Donation Intake (Case 2) Alternative Path 6A.
 ### Termination:
 The items are set aside for transfer to another pantry.
 ## Case 9: Alternative Flow 4B
@@ -360,8 +360,8 @@ The items are set aside for transfer to another pantry.
 This scenario describes the situation where items have already expired or cannot be used.
 ### Steps:
 1. **Facility Manager** marks the items as discarded.
-2. **System** removes the items from *Inventory*.
-3. **System** saves a *WasteRecord* with the items, quantities, and date.
+2. System removes the items from *Inventory*.
+3. System saves a *WasteRecord* with the items, quantities, and date.
 ### Termination:
 The items are out of *Inventory* and logged as waste.
 ### Postconditions:
@@ -375,7 +375,7 @@ The items are out of *Inventory* and logged as waste.
 ### Actor:
 **Facility Manager**
 ### Description:
-**Facility Manager** chooses a time period. **System** totals the value of food received, given out, transferred, and wasted in that period and shows a *CostReport*.
+**Facility Manager** chooses a time period. System totals the value of food received, given out, transferred, and wasted in that period and shows a *CostReport*.
 ### Related Use Cases:
 Uses donations from Donation Intake (Case 2), transfers from Case 2 Alternative Path 6A, *DistributionRecords* from Record Distribution (Case 8), and *WasteRecords* from Manage Expiring Stock (Case 9).
 ### Trigger:
@@ -389,18 +389,18 @@ This scenario describes the situation where the pantry has activity in the chose
 ### Steps:
 1. **Facility Manager** opens the cost report for their pantry.
 2. **Facility Manager** chooses a start date and an end date.
-3. **System** gathers the donations, transfers, *DistributionRecords*, and *WasteRecords* in that period.
-4. **System** multiplies each quantity by the item's value per unit.
-5. **System** totals the value received, given out, transferred, and wasted.
-6. **System** shows the *CostReport* to **Facility Manager**.
+3. System gathers the donations, transfers, *DistributionRecords*, and *WasteRecords* in that period.
+4. System multiplies each quantity by the item's value per unit.
+5. System totals the value received, given out, transferred, and wasted.
+6. System shows the *CostReport* to **Facility Manager**.
 ### Termination:
 **Facility Manager** sees the *CostReport* for the chosen period.
 ## Case 10: Alternative Flow 2A
 ### Description:
 This scenario describes the situation where the chosen period is not valid.
 ### Steps:
-1. **System** detects that the end date is before the start date or in the future.
-2. **System** tells **Facility Manager** the period is not valid.
+1. System detects that the end date is before the start date or in the future.
+2. System tells **Facility Manager** the period is not valid.
 3. Return to main path step 2.
 ### Termination:
 **Facility Manager** chooses a valid period.
@@ -408,17 +408,17 @@ This scenario describes the situation where the chosen period is not valid.
 ### Description:
 This scenario describes the situation where there is no activity in the chosen period.
 ### Steps:
-1. **System** finds no records in the period.
-2. **System** shows a *CostReport* with all totals at zero and says there was no activity.
+1. System finds no records in the period.
+2. System shows a *CostReport* with all totals at zero and says there was no activity.
 ### Termination:
 **Facility Manager** sees an empty *CostReport*.
 ## Case 10: Alternative Flow 4A
 ### Description:
 This scenario describes the situation where some items do not have a value per unit.
 ### Steps:
-1. **System** finds items with no value per unit.
-2. **System** totals the items that have a value.
-3. **System** shows the *CostReport*, marked incomplete, with a list of the items missing a value.
+1. System finds items with no value per unit.
+2. System totals the items that have a value.
+3. System shows the *CostReport*, marked incomplete, with a list of the items missing a value.
 4. **Facility Manager** may set the missing values and return to main path step 3.
 ### Termination:
 **Facility Manager** sees a *CostReport* marked incomplete, or a complete one after setting the values.
