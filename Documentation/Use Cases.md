@@ -258,3 +258,61 @@ Log in uses accounts created here.
 3. **User** receives invalid password request
 4. Return to main path
 
+## Case 8: Record Distribution
+### Actor:
+**Volunteer**
+### Description:
+A client picks up food in person at the pantry. **Volunteer** records which items and how much of each were given out. **System** subtracts them from the pantry's *Inventory*.
+### Related Use Cases:
+Inventory Auditing (Case 4) uses these records to detect low stock. Pantry Discovery (Case 5) shows the updated stock.
+### Trigger:
+A client receives food at the pantry.
+### Preconditions:
+**Volunteer** is logged in (Case 1) and is a volunteer at this pantry.
+The items given out were logged into the pantry's *Inventory* through Donation Intake (Case 2).
+## Case 8: Main Success Path
+### Description:
+This scenario describes the situation where every item given out is in stock.
+### Steps:
+1. **Volunteer** opens the distribution form for their pantry.
+2. **Volunteer** selects each item given out and enters the quantity.
+3. **Volunteer** submits the *DistributionRecord* to the **System**.
+4. **System** checks that each quantity is not more than the amount in *Inventory*.
+5. **System** subtracts the quantities from *Inventory* and saves the *DistributionRecord* with the date.
+6. **System** confirms to **Volunteer** that the distribution was recorded.
+### Termination:
+The distribution is recorded and *Inventory* is updated.
+## Case 8: Alternative Flow 2A
+### Description:
+This scenario describes the situation where an item given out is not listed in the pantry's *Inventory*.
+### Steps:
+1. **Volunteer** cannot find the item in the distribution form.
+2. **Volunteer** logs the item through Donation Intake (Case 2).
+3. Return to main path step 2.
+### Termination:
+The item is in *Inventory* and can be recorded.
+## Case 8: Alternative Flow 4A
+### Description:
+This scenario describes the situation where a quantity entered is more than the amount in *Inventory*.
+### Steps:
+1. **System** detects that a quantity is more than the amount in *Inventory*.
+2. **System** tells **Volunteer** which item is over and how many are recorded.
+3. **Volunteer** corrects the quantity.
+4. Return to main path step 3.
+### Termination:
+**Volunteer** submits a quantity that does not exceed *Inventory*.
+## Case 8: Alternative Flow 3B
+### Description:
+This scenario describes the situation where **Volunteer** cancels before submitting.
+### Steps:
+1. **Volunteer** cancels the distribution form.
+2. **System** discards the unsaved *DistributionRecord*.
+### Termination:
+Nothing is recorded and *Inventory* is unchanged.
+### Postconditions:
+**Success:** *Inventory* is reduced by the quantities given out, and the *DistributionRecord* is saved with its items, quantities, and date.
+**Failure:** *Inventory* is unchanged.
+### Quality Rules:
+- Stock for an item can never go below zero.
+- Every change to *Inventory* from a distribution can be traced to a saved *DistributionRecord*.
+
