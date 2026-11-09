@@ -94,7 +94,7 @@ User was signed in and filled out form for a delivery.
 ### Trigger
 User submits a request for a food package through the client interface 
 
-### Main Success Scenario (Happy Path)
+### Main Success Scenario
 1. **User** requests a food package with specific dietary preferences or drop-off notes.
 
 2. System validates the request, creating a *DeliveryRequest* that is pending
@@ -139,7 +139,7 @@ Should be occurring on some time interval or manually requested.
 2. Food banks have registered their locations, hours of operation, and available services in the system
 3. User provides a location  
 4. Inventory information is available for food banks that report their stock
-### Happy Path
+### Main Success Scenario
 1. The user opens the system and navigates to  PantryDiscoveryScreen.
 2. The user enters their *LocationInfo* 
 3. The system searches for nearby registered food banks
