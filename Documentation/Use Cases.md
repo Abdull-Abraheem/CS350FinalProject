@@ -430,3 +430,65 @@ In both cases *Inventory* is unchanged.
 - Calculating a *CostReport* never changes *Inventory*.
 - Every total in a *CostReport* can be traced to the records it came from.
 
+## Case 11: Configure Inventory Auditing
+### Actor:
+**Facility Manager**
+### Description:
+**Facility Manager** turns inventory auditing on for their pantry, sets a minimum stock level for each item, and chooses how often the check runs. **System** saves these as the pantry's *AuditSettings*. **Facility Manager** can later change the settings or turn auditing off.
+### Related Use Cases:
+Inventory Auditing (Case 4) uses these settings: whether the facility opted in, the threshold for each item, and how often the check runs.
+### Trigger:
+**Facility Manager** opens the auditing settings for their pantry.
+### Preconditions:
+**Facility Manager** is logged in (Case 1).
+The pantry is registered (Case 6).
+Items have been logged into the pantry's *Inventory* (Case 2).
+## Case 11: Main Success Path
+### Description:
+This scenario describes the situation where **Facility Manager** turns auditing on and sets a valid minimum for every item.
+### Steps:
+1. **Facility Manager** opens the auditing settings for their pantry.
+2. **Facility Manager** turns inventory auditing on.
+3. **Facility Manager** sets a minimum stock level for each item in *Inventory*.
+4. **Facility Manager** chooses how often the check runs.
+5. **Facility Manager** saves the settings.
+6. **System** checks that every minimum is zero or more and the check interval is valid.
+7. **System** saves the *AuditSettings* and confirms to **Facility Manager**.
+### Termination:
+Inventory auditing is on for the pantry with the saved *AuditSettings*.
+## Case 11: Alternative Flow 2A
+### Description:
+This scenario describes the situation where **Facility Manager** turns auditing off.
+### Steps:
+1. **Facility Manager** turns inventory auditing off and saves.
+2. **System** stops running Inventory Auditing (Case 4) for the pantry.
+3. **System** keeps the existing minimums and interval in case auditing is turned back on.
+### Termination:
+Inventory auditing is off for the pantry.
+## Case 11: Alternative Flow 3A
+### Description:
+This scenario describes the situation where some items have no minimum set.
+### Steps:
+1. **System** finds items in *Inventory* with no minimum stock level.
+2. **System** tells **Facility Manager** which items have no minimum and will not be audited.
+3. **Facility Manager** sets minimums for those items, or continues without them.
+4. Return to main path step 4.
+### Termination:
+**Facility Manager** has chosen which items are audited.
+## Case 11: Alternative Flow 6A
+### Description:
+This scenario describes the situation where a setting is not valid.
+### Steps:
+1. **System** detects a negative minimum or a check interval that is not valid.
+2. **System** tells **Facility Manager** which setting is not valid.
+3. **Facility Manager** corrects the setting.
+4. Return to main path step 5.
+### Termination:
+**Facility Manager** saves valid settings.
+### Postconditions:
+**Success:** The *AuditSettings* are saved, and Inventory Auditing (Case 4) runs on the chosen interval, comparing each item against its minimum.
+**Failure:** The pantry's previous *AuditSettings* are unchanged.
+### Quality Rules:
+- Only the pantry's own **Facility Manager** can change its *AuditSettings*.
+- New settings take effect at the next scheduled check.
+
