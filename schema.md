@@ -1,7 +1,9 @@
 ### Relational Database Schema 
 
 KEY NOTATION
+
 PK means primary key.
+
 FK means foreign key.
 
 Tables:
@@ -28,6 +30,10 @@ Tables:
 `PANTRY_HOURS`
 
 `FOOD_ITEM`
+-food_item_id Pk
+-name VARCHAR
+-Quantity INT
+-Unit VARCHAR  can be box, pound, gallon etc
 
 `DONATION`
  -donation_id INT
@@ -36,5 +42,9 @@ Tables:
  
 RELATIONSHIPS
 UserAccount → Donation: one user can record multiple donations.
+
 UserAccount → VolunteerProfile: a user may have one volunteer profile
+
 Pantry → Donation: one pantry can receive multiple donations.
+
+FoodItem → DonationLine: one food item can appear on multiple donation lines.
