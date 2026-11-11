@@ -492,3 +492,62 @@ This scenario describes the situation where a setting is not valid.
 - Only the pantry's own **Facility Manager** can change its *AuditSettings*.
 - New settings take effect at the next scheduled check.
 
+## Case 12: Manage Volunteers
+### Actor:
+**Facility Manager**, **User**
+### Description:
+A registered **User** asks to volunteer at a pantry. **Facility Manager** approves or declines the request. **System** gives an approved **User** the **Volunteer** role for that pantry. **Facility Manager** can also remove a **Volunteer**.
+### Related Use Cases:
+Uses accounts created in Registration (Case 7). Donation Intake (Case 2), Volunteer Distribution (Case 3), and Record Distribution (Case 8) need a **Volunteer**.
+### Trigger:
+A **User** asks to volunteer at a pantry.
+### Preconditions:
+The **User** has an account (Case 7) and is logged in (Case 1).
+The pantry is registered (Case 6).
+## Case 12: Main Success Path
+### Description:
+This scenario describes the situation where **Facility Manager** approves a **User**'s request to volunteer.
+### Steps:
+1. **User** selects a pantry and submits a *VolunteerRequest*.
+2. **System** saves the *VolunteerRequest* as pending and notifies the pantry's **Facility Manager**.
+3. **Facility Manager** reviews the pending *VolunteerRequests* for the pantry.
+4. **Facility Manager** approves the request.
+5. **System** gives the **User** the **Volunteer** role for that pantry.
+6. **System** tells the **User** they were approved.
+### Termination:
+The **User** is a **Volunteer** at the pantry.
+## Case 12: Alternative Flow 1A
+### Description:
+This scenario describes the situation where the **User** already volunteers at the pantry or already has a pending request.
+### Steps:
+1. **System** finds that the **User** is already a **Volunteer** at the pantry or has a pending *VolunteerRequest*.
+2. **System** tells the **User** and does not create a new request.
+### Termination:
+No new *VolunteerRequest* is created.
+## Case 12: Alternative Flow 4A
+### Description:
+This scenario describes the situation where **Facility Manager** declines the request.
+### Steps:
+1. **Facility Manager** declines the request.
+2. **System** marks the *VolunteerRequest* as declined.
+3. **System** tells the **User** their request was declined.
+### Termination:
+The **User** is not a **Volunteer** at the pantry.
+## Case 12: Alternative Flow 3B
+### Description:
+This scenario describes the situation where **Facility Manager** removes an existing **Volunteer**.
+### Steps:
+1. **Facility Manager** selects a **Volunteer** at their pantry.
+2. **Facility Manager** removes the **Volunteer**.
+3. **System** removes the **Volunteer** role for that pantry.
+4. **System** returns any *DeliveryRequest* the **Volunteer** claimed but did not complete to the *GigQueue* (Case 3).
+### Termination:
+The **User** is no longer a **Volunteer** at the pantry.
+### Postconditions:
+**Success:** An approved **User** has the **Volunteer** role for the pantry and can use Cases 2, 3, and 8 there.
+**Declined or removed:** The **User** keeps their account but has no **Volunteer** role at the pantry.
+**Failure:** Roles are unchanged.
+### Quality Rules:
+- Only the pantry's own **Facility Manager** can approve, decline, or remove its **Volunteers**.
+- A **User** can volunteer at more than one pantry; each pantry approves them separately.
+
