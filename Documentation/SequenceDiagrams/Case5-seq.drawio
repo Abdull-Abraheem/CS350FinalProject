@@ -1,0 +1,227 @@
+<mxfile host="Electron">
+  <diagram name="Case-5" id="gdJaBrhZSv8UKMqfkHsa">
+    <mxGraphModel dx="2317" dy="1419" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="light-dark(#FFFFFF,#FFFFFF)" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <UserObject label="" mermaidData="{&#xa;  &quot;data&quot;: &quot;%%{init: {\&quot;theme\&quot;: \&quot;base\&quot;, \&quot;themeVariables\&quot;: {\n  \&quot;primaryColor\&quot;: \&quot;#ffffff\&quot;,\n  \&quot;primaryTextColor\&quot;: \&quot;#000000\&quot;,\n  \&quot;primaryBorderColor\&quot;: \&quot;#000000\&quot;,\n  \&quot;lineColor\&quot;: \&quot;#000000\&quot;,\n  \&quot;actorBkg\&quot;: \&quot;#ffffff\&quot;,\n  \&quot;actorBorder\&quot;: \&quot;#000000\&quot;,\n  \&quot;actorTextColor\&quot;: \&quot;#000000\&quot;,\n  \&quot;signalColor\&quot;: \&quot;#000000\&quot;,\n  \&quot;signalTextColor\&quot;: \&quot;#000000\&quot;,\n  \&quot;labelBoxBkgColor\&quot;: \&quot;#ffffff\&quot;,\n  \&quot;labelBoxBorderColor\&quot;: \&quot;#000000\&quot;,\n  \&quot;labelTextColor\&quot;: \&quot;#000000\&quot;,\n  \&quot;loopTextColor\&quot;: \&quot;#000000\&quot;,\n  \&quot;activationBkgColor\&quot;: \&quot;#ffffff\&quot;,\n  \&quot;activationBorderColor\&quot;: \&quot;#000000\&quot;,\n  \&quot;sequenceNumberColor\&quot;: \&quot;#000000\&quot;\n}}}%%\nsequenceDiagram\n    actor User as Local Resident / Food Assistance Client\n    participant Discovery as Pantry Discovery\n    participant PantryData as Pantry Information\n    participant Inventory as Inventory\n\n    User-&gt;&gt;Discovery: Submit LocationInfo\n    Discovery-&gt;&gt;PantryData: Search for nearby registered food banks\n    PantryData--&gt;&gt;Discovery: Return matching PantryInfo\n    Discovery-&gt;&gt;Inventory: Retrieve reported stock for matching pantries\n    Inventory--&gt;&gt;Discovery: Return available inventory information\n    Discovery--&gt;&gt;User: Display nearby food banks and available information\n    User-&gt;&gt;Discovery: Select a food bank\n    Discovery--&gt;&gt;User: Show pantry details and available food items\n    User-&gt;&gt;Discovery: Check delivery availability\n    Discovery-&gt;&gt;PantryData: Retrieve delivery option\n    PantryData--&gt;&gt;Discovery: Return delivery availability\n\n    alt Delivery is available and user submits a request\n        User-&gt;&gt;Discovery: Submit FoodRequest\n        Discovery-&gt;&gt;PantryData: Record FoodRequest for selected pantry\n        PantryData--&gt;&gt;Discovery: Confirm request recorded\n        Discovery--&gt;&gt;User: Display request confirmation\n    else Delivery is unavailable\n        Discovery--&gt;&gt;User: Inform user that delivery is unavailable\n    end&quot;,&#xa;  &quot;config&quot;: null,&#xa;  &quot;version&quot;: &quot;12&quot;&#xa;}" id="9rWmvRfA9L3y2dz6Qdry-52">
+          <mxCell connectable="0" parent="1" style="group;transparentBounds=1;editIcon=1;lockedGroup=0;groupPadding=10;" vertex="1">
+            <mxGeometry as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Care eligible user" mermaidId="n:User" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;sequenceEdgeStyle&quot;,&quot;libavoidRouting&quot;:0,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=12;lifelineColor=#000000;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;participant=seqActorStick;verticalAlign=bottom;align=center;spacingBottom=4;size=90;lifelineMirror=1;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Local Resident / Food Assistance Client" id="9rWmvRfA9L3y2dz6Qdry-53">
+          <mxCell parent="9rWmvRfA9L3y2dz6Qdry-52" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;sequenceEdgeStyle&quot;,&quot;libavoidRouting&quot;:0,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=12;lifelineColor=#000000;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;participant=seqActorStick;verticalAlign=bottom;align=center;spacingBottom=4;size=90;lifelineMirror=1;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" vertex="1">
+            <mxGeometry height="1030.5" width="305" x="10" y="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Pantry Discovery" mermaidId="n:Discovery" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;sequenceEdgeStyle&quot;,&quot;libavoidRouting&quot;:0,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=12;lifelineColor=#000000;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;size=73;lifelineMirror=1;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Pantry Discovery" id="9rWmvRfA9L3y2dz6Qdry-54">
+          <mxCell parent="9rWmvRfA9L3y2dz6Qdry-52" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;sequenceEdgeStyle&quot;,&quot;libavoidRouting&quot;:0,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=12;lifelineColor=#000000;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;size=73;lifelineMirror=1;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" vertex="1">
+            <mxGeometry height="1002" width="150" x="600" y="58.5" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Pantry Information" mermaidId="n:PantryData" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;sequenceEdgeStyle&quot;,&quot;libavoidRouting&quot;:0,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=12;lifelineColor=#000000;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;size=73;lifelineMirror=1;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Pantry Information" id="9rWmvRfA9L3y2dz6Qdry-55">
+          <mxCell parent="9rWmvRfA9L3y2dz6Qdry-52" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;sequenceEdgeStyle&quot;,&quot;libavoidRouting&quot;:0,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=12;lifelineColor=#000000;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;size=73;lifelineMirror=1;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" vertex="1">
+            <mxGeometry height="1002" width="150" x="970" y="58.5" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Inventory" mermaidId="n:Inventory" mermaidBaseStyle="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;sequenceEdgeStyle&quot;,&quot;libavoidRouting&quot;:0,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=12;lifelineColor=#000000;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;size=73;lifelineMirror=1;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" mermaidBaseValue="Inventory" id="9rWmvRfA9L3y2dz6Qdry-56">
+          <mxCell parent="9rWmvRfA9L3y2dz6Qdry-52" style="html=1;shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;edgeStyle&quot;:&quot;sequenceEdgeStyle&quot;,&quot;libavoidRouting&quot;:0,&quot;curved&quot;:0,&quot;rounded&quot;:0};lifelineDashed=0;strokeWidth=2;rounded=1;absoluteArcSize=1;arcSize=12;lifelineColor=#000000;fillColor=#ffffff;strokeColor=#000000;fontColor=#000000;size=73;lifelineMirror=1;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontSize=16;shadow=1;shadowColor=#000000;shadowOffsetX=4;shadowOffsetY=4;shadowBlur=0;shadowOpacity=6;" vertex="1">
+            <mxGeometry height="1002" width="150" x="1450" y="63.5" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="alt" mermaidId="n:f0" mermaidBaseStyle="html=1;shape=umlFrame;dashed=1;fixDash=1;dashPattern=2 2;strokeWidth=2;pointerEvents=0;dropTarget=0;fillColor=#ffffff;strokeColor=#000000;fontSize=16;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#000000;height=35;width=50;" mermaidBaseValue="alt" id="9rWmvRfA9L3y2dz6Qdry-57">
+          <mxCell parent="9rWmvRfA9L3y2dz6Qdry-52" style="html=1;shape=umlFrame;dashed=1;fixDash=1;dashPattern=2 2;strokeWidth=2;pointerEvents=0;dropTarget=0;fillColor=#ffffff;strokeColor=#000000;fontSize=16;align=center;verticalAlign=middle;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#000000;height=35;width=50;" vertex="1">
+            <mxGeometry height="320" width="784" x="173" y="644" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="9rWmvRfA9L3y2dz6Qdry-58" parent="9rWmvRfA9L3y2dz6Qdry-57" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#000000;" value="[Delivery is available and user submits a request]" vertex="1">
+          <mxGeometry height="16" width="730" x="54" y="2" as="geometry" />
+        </mxCell>
+        <mxCell id="9rWmvRfA9L3y2dz6Qdry-59" parent="9rWmvRfA9L3y2dz6Qdry-57" style="shape=line;dashed=1;fixDash=1;dashPattern=2 2;strokeColor=#000000;" vertex="1">
+          <mxGeometry height="1" width="784" y="234" as="geometry" />
+        </mxCell>
+        <mxCell id="9rWmvRfA9L3y2dz6Qdry-60" parent="9rWmvRfA9L3y2dz6Qdry-57" style="text;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=16;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;fontColor=#000000;" value="[Delivery is unavailable]" vertex="1">
+          <mxGeometry height="16" width="784" y="236" as="geometry" />
+        </mxCell>
+        <UserObject label="Submit LocationInfo" mermaidId="e:User-&gt;Discovery#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Submit LocationInfo" id="9rWmvRfA9L3y2dz6Qdry-61">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-53" style="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-54">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="396" y="174" />
+              </Array>
+              <mxPoint x="183" y="174" as="sourcePoint" />
+              <mxPoint x="609" y="174" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Search for nearby registered food banks" mermaidId="e:Discovery-&gt;PantryData#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Search for nearby registered food banks" id="9rWmvRfA9L3y2dz6Qdry-62">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-54" style="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-55">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="778" y="220" />
+              </Array>
+              <mxPoint x="609" y="220" as="sourcePoint" />
+              <mxPoint x="946" y="220" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Return matching PantryInfo" mermaidId="e:PantryData-&gt;Discovery#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Return matching PantryInfo" id="9rWmvRfA9L3y2dz6Qdry-63">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-55" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-54">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="778" y="266" />
+              </Array>
+              <mxPoint x="946" y="266" as="sourcePoint" />
+              <mxPoint x="609" y="266" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Retrieve reported stock for matching pantries" mermaidId="e:Discovery-&gt;Inventory#0" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Retrieve reported stock for matching pantries" id="9rWmvRfA9L3y2dz6Qdry-64">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-54" style="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-56">
+            <mxGeometry relative="1" x="0.2839" y="7" as="geometry">
+              <mxPoint as="offset" />
+              <Array as="points">
+                <mxPoint x="893" y="312" />
+              </Array>
+              <mxPoint x="624" y="312" as="sourcePoint" />
+              <mxPoint x="1161" y="312" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Return available inventory information" mermaidId="e:Inventory-&gt;Discovery#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Return available inventory information" id="9rWmvRfA9L3y2dz6Qdry-65">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-56" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-54">
+            <mxGeometry relative="1" x="-0.3781" as="geometry">
+              <mxPoint as="offset" />
+              <Array as="points">
+                <mxPoint x="1192" y="365" />
+              </Array>
+              <mxPoint x="1166" y="368" as="sourcePoint" />
+              <mxPoint x="860" y="365" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Display nearby food banks and available information" mermaidId="e:Discovery-&gt;User#0" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Display nearby food banks and available information" id="9rWmvRfA9L3y2dz6Qdry-66">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-54" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-53">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="396" y="404" />
+              </Array>
+              <mxPoint x="609" y="404" as="sourcePoint" />
+              <mxPoint x="183" y="404" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Select a food bank" mermaidId="e:User-&gt;Discovery#1" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Select a food bank" id="9rWmvRfA9L3y2dz6Qdry-67">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-53" style="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-54">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="396" y="450" />
+              </Array>
+              <mxPoint x="183" y="450" as="sourcePoint" />
+              <mxPoint x="609" y="450" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Show pantry details and available food items" mermaidId="e:Discovery-&gt;User#1" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Show pantry details and available food items" id="9rWmvRfA9L3y2dz6Qdry-68">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-54" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-53">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="396" y="496" />
+              </Array>
+              <mxPoint x="609" y="496" as="sourcePoint" />
+              <mxPoint x="183" y="496" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Check delivery availability" mermaidId="e:User-&gt;Discovery#2" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Check delivery availability" id="9rWmvRfA9L3y2dz6Qdry-69">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-53" style="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-54">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="240" y="545" />
+              </Array>
+              <mxPoint x="183" y="542" as="sourcePoint" />
+              <mxPoint x="609" y="542" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Retrieve delivery option" mermaidId="e:Discovery-&gt;PantryData#1" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Retrieve delivery option" id="9rWmvRfA9L3y2dz6Qdry-70">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-54" style="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-55">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="778" y="588" />
+              </Array>
+              <mxPoint x="609" y="588" as="sourcePoint" />
+              <mxPoint x="946" y="588" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Return delivery availability" mermaidId="e:PantryData-&gt;Discovery#1" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Return delivery availability" id="9rWmvRfA9L3y2dz6Qdry-71">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-55" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-54">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="778" y="634" />
+              </Array>
+              <mxPoint x="946" y="634" as="sourcePoint" />
+              <mxPoint x="609" y="634" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Submit FoodRequest" mermaidId="e:User-&gt;Discovery#3" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Submit FoodRequest" id="9rWmvRfA9L3y2dz6Qdry-72">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-53" style="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-54">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="396" y="725" />
+              </Array>
+              <mxPoint x="183" y="725" as="sourcePoint" />
+              <mxPoint x="609" y="725" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Record FoodRequest for selected pantry" mermaidId="e:Discovery-&gt;PantryData#2" mermaidBaseStyle="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Record FoodRequest for selected pantry" id="9rWmvRfA9L3y2dz6Qdry-73">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-54" style="endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-55">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="778" y="771" />
+              </Array>
+              <mxPoint x="609" y="771" as="sourcePoint" />
+              <mxPoint x="946" y="771" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Confirm request recorded" mermaidId="e:PantryData-&gt;Discovery#2" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Confirm request recorded" id="9rWmvRfA9L3y2dz6Qdry-74">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-55" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-54">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="778" y="817" />
+              </Array>
+              <mxPoint x="946" y="817" as="sourcePoint" />
+              <mxPoint x="609" y="817" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Display request confirmation" mermaidId="e:Discovery-&gt;User#2" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Display request confirmation" id="9rWmvRfA9L3y2dz6Qdry-75">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-54" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-53">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="396" y="863" />
+              </Array>
+              <mxPoint x="609" y="863" as="sourcePoint" />
+              <mxPoint x="183" y="863" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+        <UserObject label="Inform user that delivery is unavailable" mermaidId="e:Discovery-&gt;User#3" mermaidBaseStyle="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" mermaidBaseValue="Inform user that delivery is unavailable" id="9rWmvRfA9L3y2dz6Qdry-76">
+          <mxCell edge="1" parent="9rWmvRfA9L3y2dz6Qdry-52" source="9rWmvRfA9L3y2dz6Qdry-54" style="dashed=1;fixDash=1;dashPattern=3 3;endArrow=block;endSize=9;verticalAlign=bottom;spacingBottom=2;edgeStyle=sequenceEdgeStyle;libavoidRouting=0;curved=0;rounded=0;fontSize=16;labelBackgroundColor=none;strokeWidth=1.5;strokeColor=#000000;fontColor=#000000;fontFamily=Trebuchet MS,Verdana,Arial,sans-serif;" target="9rWmvRfA9L3y2dz6Qdry-53">
+            <mxGeometry relative="1" as="geometry">
+              <Array as="points">
+                <mxPoint x="396" y="954" />
+              </Array>
+              <mxPoint x="609" y="954" as="sourcePoint" />
+              <mxPoint x="183" y="954" as="targetPoint" />
+            </mxGeometry>
+          </mxCell>
+        </UserObject>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
