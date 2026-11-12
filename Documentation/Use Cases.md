@@ -89,13 +89,14 @@ System will see that food pantry that required a transfer of goods, no longer re
 ### Description:
 ### Preconditions:
 Venue offers a delivery service.
-User was signed in and filled out form for a delivery.
+**Care Eligible user** was signed in and filled out form for a delivery.
+**Care Eligible user** was informed that submissions cannot be revoked by themselves.
 
 ### Trigger
 User submits a request for a food package through the client interface 
 
 ### Main Success Scenario
-1. **User** requests a food package with specific dietary preferences or drop-off notes.
+1. **Care Eligible user** requests a food package with specific dietary preferences or drop-off notes.
 
 2. System validates the request, creating a *DeliveryRequest* that is pending
 
@@ -114,8 +115,7 @@ Alt path 5a. If two volunteers attempt to claim the same request simultaneously,
 ### Case 3a
 1. *DeliveryRequest* has remained unclaimed for x amount of time
 2. System increases priority for *DeliveryRequest*
-3. After y amount of time, *DeliveryRequest* is cancelled and notified to **User**
-
+3. After y amount of time, *DeliveryRequest* is cancelled and notified to **Care Eligible user**
 
 ## Case 4: Inventory Auditing
 Precondition(s):
@@ -146,26 +146,26 @@ Should be occurring on some time interval or manually requested.
 4. The system retrieves *PantryInfo*.
 5. The system displays a list of nearby food banks to the user
 6. The user selects a food bank  to view its details and available food items  
-7.  The user identifies an item they need  and checks whether the selected food bank offers delivery
+7. The user identifies an item they need and checks whether the selected food bank offers delivery
 8. If delivery is available and the user wishes to request it, the user submits a FoodRequest
 9. The system records the request and adds it to the queue
 10. The system displays a confirmation message
     
 ### Alternative Flows
-* A1 Location Unavailable
+* 2A Location Unavailable
  Description: The User does not provide a location, or the system cannot recognize a valid location.
   1. The **User** submits their *LocationInfo*
   2. The System cannot validate their location
   3. The System displays an error message and requests their valid location information
   4. The **User** enters a corrected location or leaves the search
 
-* A2 No nearby food bank: No registered food banks are found within the specified area
+* 3A No nearby food bank: No registered food banks are found within the specified area
   1. The System searches for nearby registered banks
   2. The System determines that no matching food banks were found.
   3. The System notifies the user that there are no nearby banks
   4. The System offers to expand the search area
      
-* A3 inventory  Unavailable:
+* 6A inventory  Unavailable:
   1. The System retrieves the pantry's *PantryInfo*
   2. The System fails to retrieve its current inventory
   3. The System displays the pantry's available information
@@ -184,13 +184,12 @@ Should be occurring on some time interval or manually requested.
  2.  The System determines that delivery is unavailable
  3.  The System informs the **User** that the pantry 
  4.  The System informs the **User** that the item is unavailable
- 5.  The **User** selects another item or another pantry
-    
+ 5.  The **User** selects another item or another pantry  
+
 * A6 User cancels
- 1. The **User**  begins sumbmiting a food request
- 2. The **User** cancels before finishing the submission 
- 3. The System discards the incomplete request
- 4. The System returns the **User** to the pantry details screen
+ 1. The **Care Eligible user**  begins sumbmiting a food request
+ 2. The **Care Eligible user** cancels before finishing the submission 
+ 3. **Care Eligible user**  is returned to the pantry details screen
     
 * A7 System Error
  1. The System encounters an error
