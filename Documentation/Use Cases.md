@@ -112,7 +112,7 @@ User submits a request for a food package through the client interface
 
 7. **Volunteer** delivers the package, marking *DeliveryRequest* as complete.
 
-## Case 3a
+## Alternative Case 3a
 ### Description: 
 Under the situation where a *DeliveryRequest* is left incompleted, the following is what should occur.
 ### Steps:
@@ -120,7 +120,7 @@ Under the situation where a *DeliveryRequest* is left incompleted, the following
 2. System increases priority for *DeliveryRequest*.
 3. After y amount of time, *DeliveryRequest* is cancelled and notified to **Care Eligible user**.
 
-## Case 5a
+## Alternative Case 5a
 ### Description: 
 Shows the case in which two or more volunteers try to claim one request.
 ### Steps:
