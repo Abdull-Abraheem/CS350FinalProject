@@ -85,8 +85,9 @@ Donation has now been fully logged and updates into food banks inventory
 ### Termination:
 System will see that food pantry that required a transfer of goods, no longer requires transfer of goods
 
-## Case 3: Volunteer Distribution
+## Case 3: Volunteer Home Delivery Fufillment
 ### Description:
+This discussed the scenario when a **Care Eligible user** opted for a home delivery and how the software and facility should operate in response.
 ### Preconditions:
 Venue offers a delivery service.
 **Care Eligible user** was signed in and filled out form for a delivery.
@@ -95,7 +96,8 @@ Venue offers a delivery service.
 ### Trigger
 User submits a request for a food package through the client interface 
 
-### Main Success Scenario
+## Main Success Scenario
+### Steps:
 1. **Care Eligible user** requests a food package with specific dietary preferences or drop-off notes.
 
 2. System validates the request, creating a *DeliveryRequest* that is pending
@@ -110,12 +112,20 @@ User submits a request for a food package through the client interface
 
 7. **Volunteer** delivers the package, marking *DeliveryRequest* as complete.
 
-Alt path 5a. If two volunteers attempt to claim the same request simultaneously, the System grants it to the first, or whoever wins the race.
+## Case 3a
+### Description: 
+Under the situation where a *DeliveryRequest* is left incompleted, the following is what should occur.
+### Steps:
+1. *DeliveryRequest* has remained unclaimed for x amount of time.
+2. System increases priority for *DeliveryRequest*.
+3. After y amount of time, *DeliveryRequest* is cancelled and notified to **Care Eligible user**.
 
-### Case 3a
-1. *DeliveryRequest* has remained unclaimed for x amount of time
-2. System increases priority for *DeliveryRequest*
-3. After y amount of time, *DeliveryRequest* is cancelled and notified to **Care Eligible user**
+## Case 5a
+### Description: 
+Shows the case in which two or more volunteers try to claim one request.
+### Steps:
+1. **Volunteers** attempt to claim the same *DeliveryRequest* simultaneously.
+2. System grants it to whoever wins the race.
 
 ## Case 4: Inventory Auditing
 Precondition(s):
@@ -125,9 +135,10 @@ Inventory was recorded
 Trigger:
 Should be occurring on some time interval or manually requested.
 
-1. System checks *Inventory* every X
+1. System checks *Inventory* every X amount of time
 2. When certain attributes of *Inventory* are below a threshold, they are marked
 3. System sends *InventoryReport* to **Facility Manager**
+
 
 ## Case 5: Pantry Discovery
 ### Description:
