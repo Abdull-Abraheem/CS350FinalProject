@@ -100,9 +100,9 @@ User submits a request for a food package through the client interface
 ### Steps:
 1. **Care Eligible user** requests a food package with specific dietary preferences or drop-off notes.
 
-2. System validates the request, creating a *DeliveryRequest* that is pending
+2. System validates the request, creating a *DeliveryRequest* that is pending.
 
-3. System adds the DeliveryRequest to the *GigQueue*.
+3. System adds the *DeliveryRequest* to the *GigQueue* and sets its status to open with a request lifetime.
 
 4. **Volunteer** opens the dashboard and views deliveries in the *GigQueue*.
 
@@ -114,11 +114,11 @@ User submits a request for a food package through the client interface
 
 ## Alternative Case 3a
 ### Description: 
-Under the situation where a *DeliveryRequest* is left incompleted, the following is what should occur.
+Under the situation where a *DeliveryRequest* is left incomplete, the following is what should occur with x and lifetime as time parameters.
 ### Steps:
 1. *DeliveryRequest* has remained unclaimed for x amount of time.
 2. System increases priority for *DeliveryRequest*.
-3. After y amount of time, *DeliveryRequest* is cancelled and notified to **Care Eligible user**.
+3. After the lifetime expires, *DeliveryRequest* is cancelled and notified to **Care Eligible user**.
 
 ## Alternative Case 5a
 ### Description: 
@@ -126,6 +126,15 @@ Shows the case in which two or more volunteers try to claim one request.
 ### Steps:
 1. **Volunteers** attempt to claim the same *DeliveryRequest* simultaneously.
 2. System grants it to whoever wins the race.
+3. The page refreshes with the update
+
+## Alternative Case 5b
+### Description: 
+Shows the case in which a volunteer abandons the delivery.
+### Steps:
+1. **Volunteer** abandons the case
+2. System marks the *DeliveryRequest* to open
+3. **Volunteer** leaves a message for their reason
 
 ## Case 4: Inventory Auditing
 Precondition(s):
