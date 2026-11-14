@@ -100,7 +100,7 @@ User submits a request for a food package through the client interface
 ### Steps:
 1. **Care Eligible user** requests a food package with specific dietary preferences or drop-off notes.
 
-2. System validates the request, creating a *DeliveryRequest* that is pending.
+2. System validates the request, creating a *DeliveryRequest*.
 
 3. System adds the *DeliveryRequest* to the *GigQueue* and sets its status to open with a request lifetime.
 
