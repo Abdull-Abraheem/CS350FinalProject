@@ -57,33 +57,34 @@ The System stores the *Pantry Info* information to the food bank's *Inventory*, 
 ### Pre-Condtion(s):
 - Food Bank recives donations
 
-### Post_Condtion(s):
-- 
-
 ### Main Success Path:
 1. **Volunteer** access the System using a form
 
-2. Using said form, **Volunteer** adjusts the quantities of incoming donations and logs expiration dates
+2. Using said form, **Volunteer** adjusts the quantities and logs expiration dates of incoming donations
 
 3. **Volunter** submits adjusted data as *Pantry Info*, sending it to the System
 
 4. System saves and stores the *Pantry Info* infomation into the food banks *Inventory*
 
-5. System checks neighboring distribution center to check if goods from donation should be transfered to other pantries
+5. System checks if goods from donation should be transfered to other neighboring distribution center
    
 6. System dectects no transfer is required to other food pantries
 
 ### Termination:
-Donation has now been fully logged and updates into food banks inventory
+**Volunteer** receives confirmation message that information was successfully recording into the inventory
 
-### Alternative Path 6A
-- 6A1. System dectects that a neighboring distribution center needs recived goods from donation
-- 6A2. System informs **Volunteer** of required transfer to other food pantry
-- 6A3. **Volunteer** sets aside required goods that will be transfered to other food pantry 
-- 6A4. **Volunteer** informs System that required goods have been set aside for transfer
+## Case 2: Alternative Flow 6A
+### Description:
+This alternative describes the scenario where a neighboring distribution center needs a transfer of donated goods
+### Steps:
+1. System dectects that a neighboring distribution center needs recived goods from donation
+2. System informs **Volunteer** of required transfer to other food pantry
+3. **Volunteer** sets aside required goods that will be transfered to other food pantry
+4. **Volunteer** informs System that required goods have been set aside for transfer
+5. System updates the *Inventory* to reflect the goods set aside for transfer.
 
 ### Termination:
-System will see that food pantry that required a transfer of goods, no longer requires transfer of goods
+System marks that the transfer request has been fulfilled and updates the neighboring distribution center's transfer status. Return to main path.
 
 ## Case 3: Volunteer Home Delivery Fufillment
 ### Actor:
@@ -270,10 +271,41 @@ In both cases *Inventory* is unchanged by discovery.
 ### Actor:
 **Facility Manager**
 ### Description:
-**Facility Manager** adds their pantry to the system by entering *PantryInfo* (name, address, operating hours, and whether volunteer delivery is offered). System saves the *Pantry* so it can appear in Pantry Discovery. **Facility Manager** can later update the hours or delivery option.
+**Facility Manager** adds their pantry to the system by entering *PantryInfo* (name, address, operating hours, and whether volunteer delivery is offered). System saves the *Pantry* so it can appear in Pantry Discovery.
 ### Related Use Cases:
 Pantry Discovery depends on pantries registered here.
-
+### Trigger:
+**Facility Manager** wants to register their Food Pantry in to the system.
+### Preconditions:
+**Facility Manager** provides all needed information to register a *Pantry*
+## Case 6: Main Success Path
+### Steps:
+1. **Facility Manager** access the system and opens a *Pantry* form
+2. **Facility Manager** enters the the Pantry's name, address, operating hours, and whether volunteer delivery is offered into the form
+3. **Facility Manager** submits the the information, sending it to the system as *PantryInfo*
+4. System receives and validates the *PantryInfo*
+5. The system saves the *PantryInfo* and registers the new *Pantry* into the system
+6. System makes the newly registered *Pantry* available in Pantry Discovery
+### Termination:
+The **Facility manger** receives a confirmation from the system that *Pantry* has been added to the system and is now discoverable in Pantry Discovery.
+## Case 6: Alternative Flow 4A:
+### Description:
+This situation describes when the system detects that *PantryInfo* received matches already an existing *Pantry* in the system.
+### Steps:
+1. System detects that part of *PantryInfo* matches a already existing *Pantry*, either the address or name
+2. System sends a message to the **Facility Manager** informing them that *Pantry* already exists in the system
+4. System allows **Facility Manager** to view exisiting *Pantry* information
+### Termination:
+System prevents a duplicate Pantry from being register and added to Pantry Discovery
+## Case 6: Alternative Flow 4B:
+### Description:
+*PantyInfo* is missing one or more fields that were not filled in by **Facility Manager**
+### Steps:
+1. Systems recives incomplete *PantyInfo*
+2. System sends a message to **Facility Manager** that specific field was not filled in
+3. System does not register *Pantry* and does not added it to Pantry Discovery
+### Termination
+**Facility Manager** is brought back to *Panty* form to fill in missing fields
 
 > ## Case 7: Create Account - Depreciated
 > ### Actor:
