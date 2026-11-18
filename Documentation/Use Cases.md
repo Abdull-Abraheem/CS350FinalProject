@@ -86,6 +86,11 @@ Donation has now been fully logged and updates into food banks inventory
 System will see that food pantry that required a transfer of goods, no longer requires transfer of goods
 
 ## Case 3: Volunteer Home Delivery Fufillment
+### Actor:
+**Volunteer**
+
+**Care Eligible user**
+
 ### Description:
 This discussed the scenario when a **Care Eligible user** opted for a home delivery and how the software and facility should operate in response.
 ### Preconditions:
@@ -98,19 +103,20 @@ User submits a request for a food package through the client interface
 
 ## Main Success Scenario
 ### Steps:
-1. **Care Eligible user** requests a food package with specific dietary preferences or drop-off notes.
 
-2. System validates the request, creating a *DeliveryRequest*.
+1. System validates the request, creating a *DeliveryRequest*.
 
-3. System adds the *DeliveryRequest* to the *GigQueue* and sets its status to open with a request lifetime.
+2. System adds the *DeliveryRequest* to the *GigQueue* and sets its status to open with a request lifetime.
 
-4. **Volunteer** opens the dashboard and views deliveries in the *GigQueue*.
+3. **Volunteer** opens the dashboard and views deliveries in the *GigQueue*.
 
-5. **Volunteer** selects and claims a specific *DeliveryRequest*.
+4. **Volunteer** selects and claims a specific *DeliveryRequest*.
 
-6. System locks the request and updates its status to assigned.
+5. System locks the request and updates its status to assigned.
 
-7. **Volunteer** delivers the package, marking *DeliveryRequest* as complete.
+6. **Volunteer** delivers the package to **Care Eligible user**, marking *DeliveryRequest* as complete.
+
+7. System notifies **Care Eligible user** that the delivery was successful.
 
 ## Alternative Case 3a
 ### Description: 
@@ -140,8 +146,11 @@ Shows the case in which a volunteer abandons the delivery.
 *DeliveryRequest* has exited the queue, whether complete or incomplete
 
 ## Case 4: Inventory Auditing
+### Actor:
+**Facility Manager**
+
 ### Description: 
-This describes how the system catalogs and in turn  send a report to the **Facility Manager**. 
+This describes how the system catalogs and in turn send a report to the **Facility Manager**. 
 
 ### Precondition(s):
 Facility has opted into inventory tracking
@@ -155,15 +164,15 @@ Occurs on a set time interval or manually requested by **Facility Manager**
 3. Items below threshold are marked low by System
 4. System sends *InventoryReport* to **Facility Manager**
 
-### Postcondition: 
-The Facility Manager has a report showing which items are low.
-
 ## Alternative Case 1a
 ### Description: 
 The case in which the **Facility Manager** does a manual request.
 ### Steps:
 1. **Facility Manager** request System for a report
 2. Return to step 2 on the main path.
+
+### Postcondition: 
+The Facility Manager has a report showing which items are low.
 
 ## Case 5: Pantry Discovery
 ### Actor:
