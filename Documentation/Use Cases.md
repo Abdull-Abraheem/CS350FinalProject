@@ -179,10 +179,10 @@ The Facility Manager has a report showing which items are low.
 ### Actor:
 **Guest**, **Registered User**, **Care Eligible user**
 ### Description:
-**User** is at *PantryDiscoveryScreen* and wants to find a nearby food bank. **User** enters *LocationInfo*. The system searches for nearby registered food banks, retrieves their *PantryInfo* (address, operating hours, services, and current inventory), and displays them. **User** selects a food bank to view its available items. A **Care Eligible user** may submit a *DeliveryRequest* if the food bank offers delivery.
+**User** is at *PantryDiscoveryScreen* and wants to find a nearby food bank. **User** enters *LocationInfo*. The system searches for nearby registered food banks, retrieves their *PantryInfo* (address, operating hours, services, and current inventory), and displays them. **User** selects a food bank to view its available items. From there, a **Care Eligible user** may request delivery (Case 13).
 
 ### Related Use Cases:
-Pantry Discovery depends on pantries registered in Register Pantry (Case 6) and on the stock kept by Donation Intake (Case 2) and Record Distribution (Case 8). Submitted *DeliveryRequests* are fulfilled in Volunteer Distribution (Case 3).
+Pantry Discovery depends on pantries registered in Register Pantry (Case 6) and on the stock kept by Donation Intake (Case 2) and Record Distribution (Case 8). Request Home Delivery (Case 13) <<extend>>s this case.
 
 ### Trigger:
 **User** navigates to *PantryDiscoveryScreen*.
@@ -194,7 +194,7 @@ Pantry Discovery depends on pantries registered in Register Pantry (Case 6) and 
    
 ## Case 5: Main Success Path
 ### Description:
-This scenario describes the situation where a **Care Eligible user** finds a pantry with the item in stock and requests delivery.
+This scenario describes the situation where **User** finds nearby food banks and views one's available items.
 
 ### Main Success Scenario
 ### Steps:
@@ -204,12 +204,9 @@ This scenario describes the situation where a **Care Eligible user** finds a pan
 4. System retrieves the *PantryInfo* for each result, including current inventory.
 5. System displays a list of nearby food banks to **User**.
 6. **User** selects a food bank to view its details and available items.
-7. **User** selects an item they need. System confirms the item is in stock and whether the food bank offers delivery.
-8. **User** chooses to request delivery. System confirms **User** is logged in and is a **Care Eligible user**.
-9. **Care Eligible user** submits a *DeliveryRequest*.
-10. System records the *DeliveryRequest* as pending, adds it to the *GigQueue* (Case 3), and displays a confirmation message.
+7. System displays the food bank's details, available items, and whether it offers delivery.
 ### Termination:
-The *DeliveryRequest* is in the *GigQueue* and **Care Eligible user** has seen the confirmation.
+**User** has viewed a nearby food bank's details and available items. A **Care Eligible user** may continue to Request Home Delivery (Case 13).
 
 ## Case 5: Alternative Flow 3A
 ### Description:
@@ -231,7 +228,7 @@ This scenario describes the situation where no registered food banks are near th
 ### Termination:
 **User** searches a larger area or leaves the search.
 
-# Case 5: Alternative Flow 4A
+## Case 5: Alternative Flow 4A
 ### Description:
 This scenario describes the situation where a pantry's current inventory cannot be retrieved.
 ### Steps:
@@ -242,29 +239,9 @@ This scenario describes the situation where a pantry's current inventory cannot 
 ### Termination:
 **User** contacts the food bank or selects another one.
 
-## Case 5: Alternative Flow 7A
-### Description:
-This scenario describes the situation where the selected item cannot be requested.
-### Steps:
-1. System determines that the item is out of stock, or that the food bank does not offer delivery.
-2. System tells **User** which reason applies.
-3. **User** selects another item or another food bank and returns to main path step 6 or 7.
-### Termination:
-**User** selects a different item or food bank.
-
-## Case 5: Alternative Flow 8A
-### Description:
-This scenario describes the situation where **User** is a **Guest**, or is not a **Care Eligible user**.
-### Steps:
-1. System determines that **User** is not logged in or is not a **Care Eligible user**.
-2. System tells **User** that requesting delivery requires a **Care Eligible user** account and directs them to Log in (Case 1) if they are not logged in.
-3. **User** continues browsing or leaves the search.
-### Termination:
-No *DeliveryRequest* is created.
-
 ### Post_Condtion(s):
-**Success:** **User** has viewed a list of nearby food banks and their information. If delivery was requested, the *DeliveryRequest* is saved as pending in the *GigQueue* and **Care Eligible user** has seen a confirmation.
-**Failure:** If the search fails, **User** is told the information cannot be retrieved. If **Care Eligible user** cancels or cannot finish a *DeliveryRequest*, the system discards the incomplete request, no *DeliveryRequest* is created, and **User** returns to the pantry details screen.
+**Success:** **User** has viewed a list of nearby food banks and one food bank's details and available items.
+**Failure:** If the search fails, **User** is told the information cannot be retrieved.
 In both cases *Inventory* is unchanged by discovery.
 
 ## Case 6: Register Pantry
