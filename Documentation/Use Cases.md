@@ -639,3 +639,73 @@ The **User** is no longer a **Volunteer** at the pantry.
 - Only the pantry's own **Facility Manager** can approve, decline, or remove its **Volunteers**.
 - A **User** can volunteer at more than one pantry; each pantry approves them separately.
 
+## Case 13: Request Home Delivery
+### Actor:
+**Care Eligible user**
+### Description:
+While viewing a pantry in Pantry Discovery (Case 5), a **Care Eligible user** selects items and asks for them to be delivered. System checks that the items are in stock and that the pantry offers delivery, records the *DeliveryRequest* as pending, and adds it to the *GigQueue*.
+### Related Use Cases:
+<<extend>> Pantry Discovery (Case 5). Starts Volunteer Home Delivery Fufillment (Case 3). Takes over Case 5 steps 7-10 and flows 7A and 8A (issue #32).
+### Trigger:
+**Care Eligible user** chooses to request delivery while viewing a pantry's available items.
+### Preconditions:
+**User** is viewing a pantry's available items in Pantry Discovery (Case 5).
+## Case 13: Main Success Path
+### Description:
+This scenario describes the situation where a logged-in **Care Eligible user** requests in-stock items from a pantry that offers delivery.
+### Steps:
+1. **Care Eligible user** selects the items they need.
+2. System confirms each item is in stock.
+3. System confirms the pantry offers delivery.
+4. System confirms **User** is logged in and is a **Care Eligible user**.
+5. **Care Eligible user** enters a delivery address, any dietary preferences, and drop-off notes.
+6. System tells **Care Eligible user** that a submitted request cannot be withdrawn by them.
+7. **Care Eligible user** submits the *DeliveryRequest*.
+8. System records the *DeliveryRequest* as pending and adds it to the *GigQueue* (Case 3).
+9. System displays a confirmation message.
+### Termination:
+The *DeliveryRequest* is in the *GigQueue* and **Care Eligible user** has seen the confirmation.
+## Case 13: Alternative Flow 2A
+### Description:
+This scenario describes the situation where a selected item is out of stock.
+### Steps:
+1. System determines that an item is out of stock.
+2. System tells **Care Eligible user** which item is out of stock.
+3. **Care Eligible user** removes the item or selects another one, and returns to main path step 2.
+### Termination:
+Every selected item is in stock.
+## Case 13: Alternative Flow 3A
+### Description:
+This scenario describes the situation where the pantry does not offer delivery.
+### Steps:
+1. System determines that the pantry does not offer delivery.
+2. System tells **Care Eligible user** that this pantry does not deliver.
+3. **Care Eligible user** returns to Pantry Discovery (Case 5) to choose another pantry.
+### Termination:
+No *DeliveryRequest* is created for this pantry.
+## Case 13: Alternative Flow 4A
+### Description:
+This scenario describes the situation where **User** is a **Guest**, or is not a **Care Eligible user**.
+### Steps:
+1. System determines that **User** is not logged in or is not a **Care Eligible user**.
+2. System tells **User** that requesting delivery requires a **Care Eligible user** account, and directs them to Log in (Case 1) if they are not logged in.
+3. **User** continues browsing or leaves.
+### Termination:
+No *DeliveryRequest* is created.
+## Case 13: Alternative Flow 7A
+### Description:
+This scenario describes the situation where **Care Eligible user** cancels before submitting.
+### Steps:
+1. **Care Eligible user** cancels the request.
+2. System discards the unsubmitted *DeliveryRequest*.
+3. System returns **Care Eligible user** to the pantry's details.
+### Termination:
+No *DeliveryRequest* is created.
+### Postconditions:
+**Success:** A pending *DeliveryRequest* with its items, address, and notes is in the *GigQueue*.
+**Failure:** No *DeliveryRequest* is created.
+In both cases *Inventory* is unchanged.
+### Quality Rules:
+- Only a logged-in **Care Eligible user** can submit a *DeliveryRequest*.
+- Once submitted, a *DeliveryRequest* cannot be withdrawn by the **Care Eligible user** (Case 3).
+
