@@ -686,3 +686,64 @@ In both cases *Inventory* is unchanged.
 - Only a logged-in **Care Eligible user** can submit a *DeliveryRequest*.
 - Once submitted, a *DeliveryRequest* cannot be withdrawn by the **Care Eligible user** (Case 3).
 
+## Case 14: Request Care Eligibility
+### Actor:
+**Registered User**, **Facility Manager**
+### Description:
+A **Registered User** who cannot get to a pantry, such as an elderly or homebound client, asks to become a **Care Eligible user** at a pantry that offers delivery. The pantry's **Facility Manager** reviews the request and approves or declines it. System gives an approved **User** the **Care Eligible user** role for that pantry.
+### Related Use Cases:
+Request Home Delivery (Case 13) and Volunteer Home Delivery Fufillment (Case 3) need a **Care Eligible user**. Uses accounts created in Registration (Case 7).
+### Trigger:
+A **Registered User** asks to be able to use home delivery.
+### Preconditions:
+**Registered User** has an account (Case 7) and is logged in (Case 1).
+The pantry is registered (Case 6).
+## Case 14: Main Success Path
+### Description:
+This scenario describes the situation where **Facility Manager** approves a **Registered User**'s request.
+### Steps:
+1. **Registered User** selects a pantry and opens the care eligibility form.
+2. System confirms the pantry offers delivery.
+3. **Registered User** enters their delivery address and why they need home delivery.
+4. **Registered User** submits a *CareEligibilityRequest*.
+5. System saves the *CareEligibilityRequest* as pending and notifies the pantry's **Facility Manager**.
+6. **Facility Manager** reviews the pending *CareEligibilityRequests* for the pantry.
+7. **Facility Manager** approves the request.
+8. System gives **User** the **Care Eligible user** role for that pantry.
+9. System tells **User** they were approved.
+### Termination:
+**User** is a **Care Eligible user** at the pantry and can Request Home Delivery (Case 13).
+## Case 14: Alternative Flow 2A
+### Description:
+This scenario describes the situation where the pantry does not offer delivery.
+### Steps:
+1. System determines that the pantry does not offer delivery.
+2. System tells **Registered User** that this pantry does not deliver.
+3. **Registered User** selects another pantry and returns to main path step 2, or leaves.
+### Termination:
+**Registered User** selects a pantry that delivers, or no request is created.
+## Case 14: Alternative Flow 4A
+### Description:
+This scenario describes the situation where **User** is already a **Care Eligible user** at the pantry or already has a pending request.
+### Steps:
+1. System finds that **User** is already a **Care Eligible user** at the pantry or has a pending *CareEligibilityRequest*.
+2. System tells **User** and does not create a new request.
+### Termination:
+No new *CareEligibilityRequest* is created.
+## Case 14: Alternative Flow 7A
+### Description:
+This scenario describes the situation where **Facility Manager** declines the request.
+### Steps:
+1. **Facility Manager** declines the request.
+2. System marks the *CareEligibilityRequest* as declined.
+3. System tells **User** their request was declined.
+### Termination:
+**User** is not a **Care Eligible user** at the pantry.
+### Postconditions:
+**Success:** An approved **User** has the **Care Eligible user** role for the pantry.
+**Declined:** **User** keeps their account but cannot request delivery from the pantry.
+**Failure:** Roles are unchanged.
+### Quality Rules:
+- Only the pantry's own **Facility Manager** can approve or decline its *CareEligibilityRequests*.
+- The reason a **User** gives is only visible to that pantry's **Facility Manager**.
+
