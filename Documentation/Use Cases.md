@@ -747,3 +747,66 @@ This scenario describes the situation where **Facility Manager** declines the re
 - Only the pantry's own **Facility Manager** can approve or decline its *CareEligibilityRequests*.
 - The reason a **User** gives is only visible to that pantry's **Facility Manager**.
 
+## Case 15: Request Goods from Another Pantry
+### Actor:
+**Facility Manager**
+### Description:
+**Facility Manager** lists the items their pantry needs and how much of each. System saves this as an open *TransferRequest* so that Donation Intake (Case 2) at neighboring pantries can find it and set goods aside. **Facility Manager** can cancel the request if it is no longer needed.
+### Related Use Cases:
+Donation Intake (Case 2) Alternative Flow 6A checks open *TransferRequests* and updates their transfer status. Receive Transfer (Case 16) closes the request once the goods arrive. An *InventoryReport* from Inventory Auditing (Case 4) may prompt a request.
+### Trigger:
+**Facility Manager** wants goods from neighboring pantries, for example after an *InventoryReport* shows items are low.
+### Preconditions:
+**Facility Manager** is logged in (Case 1).
+The pantry is registered (Case 6).
+## Case 15: Main Success Path
+### Description:
+This scenario describes the situation where **Facility Manager** creates a new *TransferRequest*.
+### Steps:
+1. **Facility Manager** opens the transfer request form for their pantry.
+2. **Facility Manager** selects each item needed and enters a quantity.
+3. **Facility Manager** submits the *TransferRequest*.
+4. System checks that every quantity is more than zero.
+5. System checks that the pantry has no open *TransferRequest* for the same items.
+6. System saves the *TransferRequest* as open, with the pantry and date.
+7. System makes the *TransferRequest* visible to Donation Intake (Case 2) at neighboring pantries.
+8. System confirms to **Facility Manager** that the request was created.
+### Termination:
+An open *TransferRequest* is visible to neighboring pantries.
+## Case 15: Alternative Flow 4A
+### Description:
+This scenario describes the situation where a quantity is not valid.
+### Steps:
+1. System detects a quantity of zero or less.
+2. System tells **Facility Manager** which item has a quantity that is not valid.
+3. **Facility Manager** corrects the quantity and returns to main path step 3.
+### Termination:
+**Facility Manager** submits valid quantities.
+## Case 15: Alternative Flow 5A
+### Description:
+This scenario describes the situation where the pantry already has an open *TransferRequest* for an item.
+### Steps:
+1. System finds an open *TransferRequest* for one of the items.
+2. System tells **Facility Manager** and offers to change the quantity on the existing request instead.
+3. **Facility Manager** updates the existing request, or removes the item and returns to main path step 3.
+### Termination:
+No duplicate *TransferRequest* is created.
+## Case 15: Alternative Flow 1A
+### Description:
+This scenario describes the situation where **Facility Manager** cancels an open *TransferRequest* that is no longer needed.
+### Steps:
+1. **Facility Manager** opens their pantry's open *TransferRequests* and selects one.
+2. **Facility Manager** cancels it.
+3. System marks the *TransferRequest* as cancelled and stops showing it to neighboring pantries.
+4. If goods were already set aside in Case 2 Alternative Flow 6A, System tells the sending pantry the goods are no longer needed.
+### Termination:
+The *TransferRequest* is cancelled.
+### Postconditions:
+**Success:** An open *TransferRequest* is visible to neighboring pantries.
+**Cancelled:** The *TransferRequest* is no longer visible to neighboring pantries.
+**Failure:** No *TransferRequest* is created or changed.
+In all cases *Inventory* is unchanged.
+### Quality Rules:
+- Only the pantry's own **Facility Manager** can create or cancel its *TransferRequests*.
+- A *TransferRequest* stays open until all of its goods are received (Case 16) or it is cancelled.
+
