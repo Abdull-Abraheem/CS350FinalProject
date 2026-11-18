@@ -14,5 +14,5 @@ This program was created for our **CS350 Software Engineering** course
 * [Glossary](/Documentation/Glossary.md)
 * [Requirement Document](/Documentation/Requirement_Document.md)
 * Diagrams
-  * [Sequence Diagrams](/Documentation/Diagrams/Sequence)
-  * [Use Case Diagrams](/Documentation/Diagrams/UseCases)
+  * [Sequence Diagrams](/Documentation/Diagrams/Sequence/)
+  * [Use Case Diagrams](/Documentation/Diagrams/UseCases/)
