@@ -136,18 +136,34 @@ Shows the case in which a volunteer abandons the delivery.
 2. System marks the *DeliveryRequest* to open
 3. **Volunteer** leaves a message for their reason
 
-## Case 4: Inventory Auditing
-Precondition(s):
-Facility opted to use this aspect
-Inventory was recorded
+### Postcondions:
+*DeliveryRequest* has exited the queue, whether complete or incomplete
 
-Trigger:
-Should be occurring on some time interval or manually requested.
+## Case 4: Inventory Auditing
+### Description: 
+This describes how the system catalogs and in turn  send a report to the **Facility Manager**. 
+
+### Precondition(s):
+Facility has opted into inventory tracking
+Inventory has been recorded
+
+### Trigger:
+Occurs on a set time interval or manually requested by **Facility Manager**
 
 1. System checks *Inventory* every X amount of time
-2. When certain attributes of *Inventory* are below a threshold, they are marked
-3. System sends *InventoryReport* to **Facility Manager**
+2. System compares the items amount to a threshold
+3. Items below threshold are marked low by System
+4. System sends *InventoryReport* to **Facility Manager**
 
+### Postcondition: 
+The Facility Manager has a report showing which items are low.
+
+## Alternative Case 1a
+### Description: 
+The case in which the **Facility Manager** does a manual request.
+### Steps:
+1. **Facility Manager** request System for a report
+2. Return to step 2 on the main path.
 
 ## Case 5: Pantry Discovery
 ### Actor:
