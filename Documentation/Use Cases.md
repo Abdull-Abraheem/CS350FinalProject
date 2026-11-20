@@ -163,7 +163,8 @@ Occurs on a set time interval or manually requested by **Facility Manager**
 1. System checks *Inventory* every X amount of time
 2. System compares the items amount to a threshold
 3. Items below threshold are marked low by System
-4. System sends *InventoryReport* to **Facility Manager**
+4. Items that are above threshold have their mark removed or stay the same 
+5. System sends *InventoryReport* to **Facility Manager**
 
 ## Alternative Case 1a
 ### Description: 
