@@ -9,6 +9,8 @@ Manages Food Bank. Responsible for inventory. Extends **User**
 ## Data
 ### LoginInfo
 **Data** used to authenticate **User**
+### DistributionRecord
+**Data** of incoming or outgoing *Inventory*
 ## Components
 ### LoginScreen
 Screen(or Page) shown when **User** needs to perform initial authentication.
@@ -18,3 +20,8 @@ Screen(or Page) shown after **User** performs initial authentication.
 **Component** used to perform authentication.
 ### Validator(Maybe?)
 **Component** used to perform validation.
+## Data Storage
+### Inventory
+**Database** containing the records of current *Inventory*
+### Distribution 
+**Database** containing records incoming and outgoing(includes loss) *Inventory* 
