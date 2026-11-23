@@ -180,10 +180,10 @@ The Facility Manager has a report showing which items are low.
 ### Actor:
 **Guest**, **Registered User**, **Care Eligible user**
 ### Description:
-**User** is at *PantryDiscoveryScreen* and wants to find a nearby food bank. **User** enters *LocationInfo*. The system searches for nearby registered food banks, retrieves their *PantryInfo* (address, operating hours, services, and current inventory), and displays them. **User** selects a food bank to view its available items. A **Care Eligible user** may submit a *DeliveryRequest* if the food bank offers delivery.
+**User** is at *PantryDiscoveryScreen* and wants to find a nearby food bank. **User** enters *LocationInfo*. The system searches for nearby registered food banks, retrieves their *PantryInfo* (address, operating hours, services, and current inventory), and displays them. **User** selects a food bank to view its available items. From there, a **Care Eligible user** may request delivery (Case 13).
 
 ### Related Use Cases:
-Pantry Discovery depends on pantries registered in Register Pantry (Case 6) and on the stock kept by Donation Intake (Case 2) and Record Distribution (Case 8). Submitted *DeliveryRequests* are fulfilled in Volunteer Distribution (Case 3).
+Pantry Discovery depends on pantries registered in Register Pantry (Case 6) and on the stock kept by Donation Intake (Case 2) and Record Distribution (Case 8). Request Home Delivery (Case 13) <<extend>>s this case.
 
 ### Trigger:
 **User** navigates to *PantryDiscoveryScreen*.
@@ -195,7 +195,7 @@ Pantry Discovery depends on pantries registered in Register Pantry (Case 6) and 
    
 ## Case 5: Main Success Path
 ### Description:
-This scenario describes the situation where a **Care Eligible user** finds a pantry with the item in stock and requests delivery.
+This scenario describes the situation where **User** finds nearby food banks and views one's available items.
 
 ### Main Success Scenario
 ### Steps:
@@ -205,12 +205,9 @@ This scenario describes the situation where a **Care Eligible user** finds a pan
 4. System retrieves the *PantryInfo* for each result, including current inventory.
 5. System displays a list of nearby food banks to **User**.
 6. **User** selects a food bank to view its details and available items.
-7. **User** selects an item they need. System confirms the item is in stock and whether the food bank offers delivery.
-8. **User** chooses to request delivery. System confirms **User** is logged in and is a **Care Eligible user**.
-9. **Care Eligible user** submits a *DeliveryRequest*.
-10. System records the *DeliveryRequest* as pending, adds it to the *GigQueue* (Case 3), and displays a confirmation message.
+7. System displays the food bank's details, available items, and whether it offers delivery.
 ### Termination:
-The *DeliveryRequest* is in the *GigQueue* and **Care Eligible user** has seen the confirmation.
+**User** has viewed a nearby food bank's details and available items. A **Care Eligible user** may continue to Request Home Delivery (Case 13).
 
 ## Case 5: Alternative Flow 3A
 ### Description:
@@ -232,7 +229,7 @@ This scenario describes the situation where no registered food banks are near th
 ### Termination:
 **User** searches a larger area or leaves the search.
 
-# Case 5: Alternative Flow 4A
+## Case 5: Alternative Flow 4A
 ### Description:
 This scenario describes the situation where a pantry's current inventory cannot be retrieved.
 ### Steps:
@@ -243,29 +240,9 @@ This scenario describes the situation where a pantry's current inventory cannot 
 ### Termination:
 **User** contacts the food bank or selects another one.
 
-## Case 5: Alternative Flow 7A
-### Description:
-This scenario describes the situation where the selected item cannot be requested.
-### Steps:
-1. System determines that the item is out of stock, or that the food bank does not offer delivery.
-2. System tells **User** which reason applies.
-3. **User** selects another item or another food bank and returns to main path step 6 or 7.
-### Termination:
-**User** selects a different item or food bank.
-
-## Case 5: Alternative Flow 8A
-### Description:
-This scenario describes the situation where **User** is a **Guest**, or is not a **Care Eligible user**.
-### Steps:
-1. System determines that **User** is not logged in or is not a **Care Eligible user**.
-2. System tells **User** that requesting delivery requires a **Care Eligible user** account and directs them to Log in (Case 1) if they are not logged in.
-3. **User** continues browsing or leaves the search.
-### Termination:
-No *DeliveryRequest* is created.
-
 ### Post_Condtion(s):
-**Success:** **User** has viewed a list of nearby food banks and their information. If delivery was requested, the *DeliveryRequest* is saved as pending in the *GigQueue* and **Care Eligible user** has seen a confirmation.
-**Failure:** If the search fails, **User** is told the information cannot be retrieved. If **Care Eligible user** cancels or cannot finish a *DeliveryRequest*, the system discards the incomplete request, no *DeliveryRequest* is created, and **User** returns to the pantry details screen.
+**Success:** **User** has viewed a list of nearby food banks and one food bank's details and available items.
+**Failure:** If the search fails, **User** is told the information cannot be retrieved.
 In both cases *Inventory* is unchanged by discovery.
 
 ## Case 6: Register Pantry
@@ -639,4 +616,198 @@ The **User** is no longer a **Volunteer** at the pantry.
 ### Quality Rules:
 - Only the pantry's own **Facility Manager** can approve, decline, or remove its **Volunteers**.
 - A **User** can volunteer at more than one pantry; each pantry approves them separately.
+
+## Case 13: Request Home Delivery
+### Actor:
+**Care Eligible user**
+### Description:
+While viewing a pantry in Pantry Discovery (Case 5), a **Care Eligible user** selects items and asks for them to be delivered. System checks that the items are in stock and that the pantry offers delivery, records the *DeliveryRequest* as pending, and adds it to the *GigQueue*.
+### Related Use Cases:
+<<extend>> Pantry Discovery (Case 5). Starts Volunteer Home Delivery Fufillment (Case 3). Takes over Case 5 steps 7-10 and flows 7A and 8A (issue #32).
+### Trigger:
+**Care Eligible user** chooses to request delivery while viewing a pantry's available items.
+### Preconditions:
+**User** is viewing a pantry's available items in Pantry Discovery (Case 5).
+## Case 13: Main Success Path
+### Description:
+This scenario describes the situation where a logged-in **Care Eligible user** requests in-stock items from a pantry that offers delivery.
+### Steps:
+1. **Care Eligible user** selects the items they need.
+2. System confirms each item is in stock.
+3. System confirms the pantry offers delivery.
+4. System confirms **User** is logged in and is a **Care Eligible user**.
+5. **Care Eligible user** enters a delivery address, any dietary preferences, and drop-off notes.
+6. System tells **Care Eligible user** that a submitted request cannot be withdrawn by them.
+7. **Care Eligible user** submits the *DeliveryRequest*.
+8. System records the *DeliveryRequest* as pending and adds it to the *GigQueue* (Case 3).
+9. System displays a confirmation message.
+### Termination:
+The *DeliveryRequest* is in the *GigQueue* and **Care Eligible user** has seen the confirmation.
+## Case 13: Alternative Flow 2A
+### Description:
+This scenario describes the situation where a selected item is out of stock.
+### Steps:
+1. System determines that an item is out of stock.
+2. System tells **Care Eligible user** which item is out of stock.
+3. **Care Eligible user** removes the item or selects another one, and returns to main path step 2.
+### Termination:
+Every selected item is in stock.
+## Case 13: Alternative Flow 3A
+### Description:
+This scenario describes the situation where the pantry does not offer delivery.
+### Steps:
+1. System determines that the pantry does not offer delivery.
+2. System tells **Care Eligible user** that this pantry does not deliver.
+3. **Care Eligible user** returns to Pantry Discovery (Case 5) to choose another pantry.
+### Termination:
+No *DeliveryRequest* is created for this pantry.
+## Case 13: Alternative Flow 4A
+### Description:
+This scenario describes the situation where **User** is a **Guest**, or is not a **Care Eligible user**.
+### Steps:
+1. System determines that **User** is not logged in or is not a **Care Eligible user**.
+2. System tells **User** that requesting delivery requires a **Care Eligible user** account, and directs them to Log in (Case 1) if they are not logged in.
+3. **User** continues browsing or leaves.
+### Termination:
+No *DeliveryRequest* is created.
+## Case 13: Alternative Flow 7A
+### Description:
+This scenario describes the situation where **Care Eligible user** cancels before submitting.
+### Steps:
+1. **Care Eligible user** cancels the request.
+2. System discards the unsubmitted *DeliveryRequest*.
+3. System returns **Care Eligible user** to the pantry's details.
+### Termination:
+No *DeliveryRequest* is created.
+### Postconditions:
+**Success:** A pending *DeliveryRequest* with its items, address, and notes is in the *GigQueue*.
+**Failure:** No *DeliveryRequest* is created.
+In both cases *Inventory* is unchanged.
+### Quality Rules:
+- Only a logged-in **Care Eligible user** can submit a *DeliveryRequest*.
+- Once submitted, a *DeliveryRequest* cannot be withdrawn by the **Care Eligible user** (Case 3).
+
+## Case 14: Request Care Eligibility
+### Actor:
+**Registered User**, **Facility Manager**
+### Description:
+A **Registered User** who cannot get to a pantry, such as an elderly or homebound client, asks to become a **Care Eligible user** at a pantry that offers delivery. The pantry's **Facility Manager** reviews the request and approves or declines it. System gives an approved **User** the **Care Eligible user** role for that pantry.
+### Related Use Cases:
+Request Home Delivery (Case 13) and Volunteer Home Delivery Fufillment (Case 3) need a **Care Eligible user**. Uses accounts created in Registration (Case 7).
+### Trigger:
+A **Registered User** asks to be able to use home delivery.
+### Preconditions:
+**Registered User** has an account (Case 7) and is logged in (Case 1).
+The pantry is registered (Case 6).
+## Case 14: Main Success Path
+### Description:
+This scenario describes the situation where **Facility Manager** approves a **Registered User**'s request.
+### Steps:
+1. **Registered User** selects a pantry and opens the care eligibility form.
+2. System confirms the pantry offers delivery.
+3. **Registered User** enters their delivery address and why they need home delivery.
+4. **Registered User** submits a *CareEligibilityRequest*.
+5. System saves the *CareEligibilityRequest* as pending and notifies the pantry's **Facility Manager**.
+6. **Facility Manager** reviews the pending *CareEligibilityRequests* for the pantry.
+7. **Facility Manager** approves the request.
+8. System gives **User** the **Care Eligible user** role for that pantry.
+9. System tells **User** they were approved.
+### Termination:
+**User** is a **Care Eligible user** at the pantry and can Request Home Delivery (Case 13).
+## Case 14: Alternative Flow 2A
+### Description:
+This scenario describes the situation where the pantry does not offer delivery.
+### Steps:
+1. System determines that the pantry does not offer delivery.
+2. System tells **Registered User** that this pantry does not deliver.
+3. **Registered User** selects another pantry and returns to main path step 2, or leaves.
+### Termination:
+**Registered User** selects a pantry that delivers, or no request is created.
+## Case 14: Alternative Flow 4A
+### Description:
+This scenario describes the situation where **User** is already a **Care Eligible user** at the pantry or already has a pending request.
+### Steps:
+1. System finds that **User** is already a **Care Eligible user** at the pantry or has a pending *CareEligibilityRequest*.
+2. System tells **User** and does not create a new request.
+### Termination:
+No new *CareEligibilityRequest* is created.
+## Case 14: Alternative Flow 7A
+### Description:
+This scenario describes the situation where **Facility Manager** declines the request.
+### Steps:
+1. **Facility Manager** declines the request.
+2. System marks the *CareEligibilityRequest* as declined.
+3. System tells **User** their request was declined.
+### Termination:
+**User** is not a **Care Eligible user** at the pantry.
+### Postconditions:
+**Success:** An approved **User** has the **Care Eligible user** role for the pantry.
+**Declined:** **User** keeps their account but cannot request delivery from the pantry.
+**Failure:** Roles are unchanged.
+### Quality Rules:
+- Only the pantry's own **Facility Manager** can approve or decline its *CareEligibilityRequests*.
+- The reason a **User** gives is only visible to that pantry's **Facility Manager**.
+
+## Case 15: Request Goods from Another Pantry
+### Actor:
+**Facility Manager**
+### Description:
+**Facility Manager** lists the items their pantry needs and how much of each. System saves this as an open *TransferRequest* so that Donation Intake (Case 2) at neighboring pantries can find it and set goods aside. **Facility Manager** can cancel the request if it is no longer needed.
+### Related Use Cases:
+Donation Intake (Case 2) Alternative Flow 6A checks open *TransferRequests* and updates their transfer status. Receive Transfer (Case 16) closes the request once the goods arrive. An *InventoryReport* from Inventory Auditing (Case 4) may prompt a request.
+### Trigger:
+**Facility Manager** wants goods from neighboring pantries, for example after an *InventoryReport* shows items are low.
+### Preconditions:
+**Facility Manager** is logged in (Case 1).
+The pantry is registered (Case 6).
+## Case 15: Main Success Path
+### Description:
+This scenario describes the situation where **Facility Manager** creates a new *TransferRequest*.
+### Steps:
+1. **Facility Manager** opens the transfer request form for their pantry.
+2. **Facility Manager** selects each item needed and enters a quantity.
+3. **Facility Manager** submits the *TransferRequest*.
+4. System checks that every quantity is more than zero.
+5. System checks that the pantry has no open *TransferRequest* for the same items.
+6. System saves the *TransferRequest* as open, with the pantry and date.
+7. System makes the *TransferRequest* visible to Donation Intake (Case 2) at neighboring pantries.
+8. System confirms to **Facility Manager** that the request was created.
+### Termination:
+An open *TransferRequest* is visible to neighboring pantries.
+## Case 15: Alternative Flow 4A
+### Description:
+This scenario describes the situation where a quantity is not valid.
+### Steps:
+1. System detects a quantity of zero or less.
+2. System tells **Facility Manager** which item has a quantity that is not valid.
+3. **Facility Manager** corrects the quantity and returns to main path step 3.
+### Termination:
+**Facility Manager** submits valid quantities.
+## Case 15: Alternative Flow 5A
+### Description:
+This scenario describes the situation where the pantry already has an open *TransferRequest* for an item.
+### Steps:
+1. System finds an open *TransferRequest* for one of the items.
+2. System tells **Facility Manager** and offers to change the quantity on the existing request instead.
+3. **Facility Manager** updates the existing request, or removes the item and returns to main path step 3.
+### Termination:
+No duplicate *TransferRequest* is created.
+## Case 15: Alternative Flow 1A
+### Description:
+This scenario describes the situation where **Facility Manager** cancels an open *TransferRequest* that is no longer needed.
+### Steps:
+1. **Facility Manager** opens their pantry's open *TransferRequests* and selects one.
+2. **Facility Manager** cancels it.
+3. System marks the *TransferRequest* as cancelled and stops showing it to neighboring pantries.
+4. If goods were already set aside in Case 2 Alternative Flow 6A, System tells the sending pantry the goods are no longer needed.
+### Termination:
+The *TransferRequest* is cancelled.
+### Postconditions:
+**Success:** An open *TransferRequest* is visible to neighboring pantries.
+**Cancelled:** The *TransferRequest* is no longer visible to neighboring pantries.
+**Failure:** No *TransferRequest* is created or changed.
+In all cases *Inventory* is unchanged.
+### Quality Rules:
+- Only the pantry's own **Facility Manager** can create or cancel its *TransferRequests*.
+- A *TransferRequest* stays open until all of its goods are received (Case 16) or it is cancelled.
 
